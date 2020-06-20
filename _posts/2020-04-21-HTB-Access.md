@@ -1,7 +1,7 @@
 ---
 title:     "Hack The Box - Access"
 tags: [windows,easy,ftp,nishang,runas]
-layout: post
+categories: HackTheBox
 ---
 
 
