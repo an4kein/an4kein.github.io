@@ -40,7 +40,7 @@ $highlight_theme : jekyll-config("highlight_theme");
 }
 
 @if $highlight_theme == "night eighties" {
-  $highlight-background   : #2d2d2d !global;
+  $highlight-background   : #201e1e !global;
   $highlight-current-line : #393939 !global;
   $highlight-selection    : #515151 !global;
   $highlight-foreground   : #cccccc !global;
