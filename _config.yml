@@ -4,12 +4,12 @@
 # ---------------------------------------------------------------
 
 # Site
-title: Nikhil's Cybersec Blog
-subtitle: Walkthroughs for HTB retired machines,Vulnhub and other CTF Challenges.
+title: An4kein Cybersec Blog
+subtitle: Instruções para máquinas aposentadas HTB.
 description: Cyber Security Enthusiast | eJPT
 author: Nikhil
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
-language: en
+language: pt-BR
 date_format: '%Y-%m-%d'
 
 # URL
