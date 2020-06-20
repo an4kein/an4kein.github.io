@@ -13,7 +13,7 @@ Nós vamos abrir o acesso a partir do Hack The Box.
 Link: <https://www.hackthebox.eu/home/machines/profile/2>
 
 Agora, vamos começar a enumeração inicial usando o nmap.
-## Resultados da verificação do nmap:
+## Nmap Scan Results:
 
 ```
 PORT     STATE  SERVICE       VERSION
@@ -40,7 +40,7 @@ Host script results:
 |_smb2-time: Protocol negotiation failed (SMB2)
 ```
 
-## Scripts NSE:
+## NSE Scripts:
 
 Utilizando os scripts NSE do nmap, podemos realizar mais um scan em busca de vulnerabilidades.
 ```
@@ -86,24 +86,41 @@ Host script results:                                                            
 |       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
 |_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
 ```
-## FTP:
+## Exploitation smb-vuln-ms08-067:
 
-I tried `anonymous` login without a password.
+De acordo com o resultado do nmap utilizando os scripts em busca de vulns, foi encontrada duas vulnerabilidades (smb-vuln-ms08-067) e (smb-vuln-ms17-010), com o searchsploit podemos procurar por exploits disponiveis.
+
+searchsploit ms08-067
 ```
-root@w0lf:~/CTF/HTB/Boxes/Access# ftp 10.10.10.98
-Connected to 10.10.10.98.
-220 Microsoft FTP Service
-Name (10.10.10.98:root): anonymous
-331 Anonymous access allowed, send identity (e-mail name) as password.
-Password:
-230 User logged in.
-Remote system type is Windows_NT.
-ftp> ls
-200 PORT command successful.
-125 Data connection already open; Transfer starting.
-08-23-18  09:16PM       <DIR>          Backups
-08-24-18  10:00PM       <DIR>          Engineer
-226 Transfer complete.
+root@kali:~/HTB-Windows/Legacy# searchsploit ms08-067
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                           |  Path
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Microsoft Windows - 'NetAPI32.dll' Code Execution (Python) (MS08-067)                                                                    | windows/remote/40279.py
+Microsoft Windows Server - Code Execution (MS08-067)                                                                                     | windows/remote/7104.c
+Microsoft Windows Server - Code Execution (PoC) (MS08-067)                                                                               | windows/dos/6824.txt
+Microsoft Windows Server - Service Relative Path Stack Corruption (MS08-067) (Metasploit)                                                | windows/remote/16362.rb
+Microsoft Windows Server - Universal Code Execution (MS08-067)                                                                           | windows/remote/6841.txt
+Microsoft Windows Server 2000/2003 - Code Execution (MS08-067)                                                                           | windows/remote/7132.py
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+
+```
+
+searchsploit ms17-010
+```
+root@kali:~/HTB-Windows/Legacy# searchsploit ms17-010
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                           |  Path
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Microsoft Windows - 'EternalRomance'/'EternalSynergy'/'EternalChampion' SMB Remote Code Execution (Metasploit) (MS17-010)                | windows/remote/43970.rb
+Microsoft Windows - SMB Remote Code Execution Scanner (MS17-010) (Metasploit)                                                            | windows/dos/41891.rb
+Microsoft Windows 7/2008 R2 - 'EternalBlue' SMB Remote Code Execution (MS17-010)                                                         | windows/remote/42031.py
+Microsoft Windows 7/8.1/2008 R2/2012 R2/2016 R2 - 'EternalBlue' SMB Remote Code Execution (MS17-010)                                     | windows/remote/42315.py
+Microsoft Windows 8/8.1/2012 R2 (x64) - 'EternalBlue' SMB Remote Code Execution (MS17-010)                                               | windows_x86-64/remote/42030.py
+Microsoft Windows Server 2008 R2 (x64) - 'SrvOs2FeaToNt' SMB Remote Code Execution (MS17-010)                                            | windows_x86-64/remote/41987.py
+----------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
 ```
 
 There is `backup.mdb` in the `Backups` folder, downloaded that to my machine.
