@@ -43,8 +43,49 @@ Host script results:
 ## Scripts NSE:
 
 Utilizando os scripts NSE do nmap, podemos realizar mais um scan em busca de vulnerabilidades.
-![64890ddad32d6229bb16687fb3bb23af.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-access/cc64ea5343cd4d46aecbbff859d27037.png)
-
+```
+root@kali:~/HTB-Windows/Legacy# nmap -p139,445 --script vuln 10.10.10.4               
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-20 19:17 EDT              
+Nmap scan report for 10.10.10.4
+Host is up (0.20s latency).  
+                                          
+PORT    STATE SERVICE                                                                
+139/tcp open  netbios-ssn   
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+445/tcp open  microsoft-ds       
+|_clamav-exec: ERROR: Script execution failed (use -d to debug)
+Host script results:                                                                                                                                                [3/117]
+|_samba-vuln-cve-2012-1182: NT_STATUS_ACCESS_DENIED                                                                                                                        
+| smb-vuln-ms08-067: 
+|   VULNERABLE:                                                                      
+|   Microsoft Windows system vulnerable to remote code execution (MS08-067)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2008-4250
+|           The Server service in Microsoft Windows 2000 SP4, XP SP2 and SP3, Server 2003 SP1 and SP2,
+|           Vista Gold and SP1, Server 2008, and 7 Pre-Beta allows remote attackers to execute arbitrary
+|           code via a crafted RPC request that triggers the overflow during path canonicalization.
+|           
+|     Disclosure date: 2008-10-23
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms08-067.aspx
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-4250
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: ERROR: Script execution failed (use -d to debug)
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|           
+|     Disclosure date: 2017-03-14
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+|_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+```
 ## FTP:
 
 I tried `anonymous` login without a password.
