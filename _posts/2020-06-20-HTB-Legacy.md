@@ -8,38 +8,41 @@ categories: HackTheBox
 ![1.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-legacy/1.jpg)
 
 
-We are going to pwn Access from Hack The Box.
+Nós vamos abrir o acesso a partir do Hack The Box.
 
 Link: <https://www.hackthebox.eu/home/machines/profile/2>
 
-Let's Begin with our Initial Nmap Scan.
-
-## Nmap Scan Results:
+Agora, vamos começar a enumeração inicial usando o nmap.
+## Resultados da verificação do nmap:
 
 ```
-PORT   STATE SERVICE VERSION
-21/tcp open  ftp     Microsoft ftpd
-| ftp-anon: Anonymous FTP login allowed (FTP code 230)
-|_Can't get directory listing: PASV failed: 425 Cannot open data connection.
-| ftp-syst: 
-|_  SYST: Windows_NT
-23/tcp open  telnet?
-80/tcp open  http    Microsoft IIS httpd 7.5
-| http-methods: 
-|_  Potentially risky methods: TRACE
-|_http-server-header: Microsoft-IIS/7.5
-|_http-title: MegaCorp
-Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
-Device type: general purpose|phone|specialized
-Running (JUST GUESSING): Microsoft Windows 8|Phone|2008|7|8.1|Vista|2012 (92%)
-OS CPE: cpe:/o:microsoft:windows_8 cpe:/o:microsoft:windows cpe:/o:microsoft:windows_server_2008:r2 cpe:/o:microsoft:windows_7 cpe:/o:microsoft:windows_8.1 cpe:/o:microsoft:windows_vista::- cpe:/o:microsoft:windows_vista::sp1 cpe:/o:microsoft:windows_server_2012
-Aggressive OS guesses: Microsoft Windows 8.1 Update 1 (92%), Microsoft Windows Phone 7.5 or 8.0 (92%), Microsoft Windows 7 or Windows Server 2008 R2 (91%), Microsoft Windows Server 2008 R2 (91%), Microsoft Windows Server 2008 R2 or Windows 8.1 (91%), Microsoft Windows Server 2008 R2 SP1 or Windows 8 (91%), Microsoft Windows 7 (91%), Microsoft Windows 7 Professional or Windows 8 (91%), Microsoft Windows 7 SP1 or Windows Server 2008 R2 (91%), Microsoft Windows 7 SP1 or Windows Server 2008 SP2 or 2008 R2 SP1 (91%)
-No exact OS matches for host (test conditions non-ideal).
-Network Distance: 2 hops
-```
-## HTTP:
+PORT     STATE  SERVICE       VERSION
+139/tcp  open   netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open   microsoft-ds  Windows XP microsoft-ds
+3389/tcp closed ms-wbt-server
+Service Info: OSs: Windows, Windows XP; CPE: cpe:/o:microsoft:windows, cpe:/o:microsoft:windows_xp
 
-It seems like a normal webpage.
+Host script results:
+|_clock-skew: mean: 5d00h31m02s, deviation: 2h07m16s, median: 4d23h01m02s
+|_nbstat: NetBIOS name: LEGACY, NetBIOS user: <unknown>, NetBIOS MAC: 00:50:56:b9:70:7e (VMware)
+| smb-os-discovery: 
+|   OS: Windows XP (Windows 2000 LAN Manager)
+|   OS CPE: cpe:/o:microsoft:windows_xp::-
+|   Computer name: legacy
+|   NetBIOS computer name: LEGACY\x00
+|   Workgroup: HTB\x00
+|_  System time: 2020-06-25T02:06:05+03:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smb2-time: Protocol negotiation failed (SMB2)
+```
+
+## Scripts NSE:
+
+Utilizando os scripts NSE do nmap, podemos realizar mais um scan em busca de vulnerabilidades.
 ![64890ddad32d6229bb16687fb3bb23af.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-access/cc64ea5343cd4d46aecbbff859d27037.png)
 
 ## FTP:
