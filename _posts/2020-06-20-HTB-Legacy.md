@@ -123,7 +123,7 @@ Microsoft Windows Server 2008 R2 (x64) - 'SrvOs2FeaToNt' SMB Remote Code Executi
 Shellcodes: No Results
 ```
 
-## Exploitation smb-vuln-ms08-067 method 1:
+## ms08-067 method 1 with metasploit:
 
 Tentei outras formas de explorar manualmente sem o uso do MSFCONSOLE, no entanto, tive dificuldades por conta que sempre a maquina dava pau. Depois de muitas tentativas sem sucesso resolvi usar o MSFCONSLE.
 
@@ -276,7 +276,7 @@ e69af0e4f443de7e36876fda4ec7644f
 C:\WINDOWS\system32>
 ```
 
-## Exploitation smb-vuln-ms08-067 method 2 without metasploit:
+## ms08-067 method 2 without metasploit:
 
 ***reference*** https://github.com/andyacer/ms08_067
 
