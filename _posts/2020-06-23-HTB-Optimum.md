@@ -1385,3 +1385,27 @@ Ok, preciso apenas de exploits local.. entao basta passar a opcao **-l**
  
  done
  ```
+Iniciamos entao nossa escalada novamente de kernel exploitation
+
+Comecei por MS16-075, sem exito.. Vamos pro proximo
+
+```
+MS16-075: Security Update for Windows SMB Server (3164038) - Important
+   https://github.com/foxglovesec/RottenPotato
+   https://github.com/Kevin-Robertson/Tater
+   https://bugs.chromium.org/p/project-zero/issues/detail?id=222 -- Windows: Local WebDAV NTLM Reflection Elevation of Privilege
+   https://foxglovesecurity.com/2016/01/16/hot-potato/ -- Hot Potato - Windows Privilege Escalation
+```
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/7.jpg)
+
+Vamos tentar o MS16-032
+
+```
+MS16-032: Security Update for Secondary Logon to Address Elevation of Privile (3143141) - Important
+   https://www.exploit-db.com/exploits/40107/ -- MS16-032 Secondary Logon Handle Privilege Escalation, MSF
+   https://www.exploit-db.com/exploits/39574/ -- Microsoft Windows 8.1/10 - Secondary Logon Standard Handles Missing Sanitization Privilege Escalation (MS16-032), PoC
+   https://www.exploit-db.com/exploits/39719/ -- Microsoft Windows 7-10 & Server 2008-2012 (x32/x64) - Local Privilege Escalation (MS16-032) (PowerShell), PoC
+   https://www.exploit-db.com/exploits/39809/ -- Microsoft Windows 7-10 & Server 2008-2012 (x32/x64) - Local Privilege Escalation (MS16-032) (C#)
+```
+
