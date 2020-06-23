@@ -87,3 +87,8 @@ The command completed successfully.
 
 C:\Users\kostas\Desktop>
 ```
+Agora, vamos ver se temos a possibilidade de exploits de kernel...
+
+Usando o **systeminfo** pegamos a informacoes sobre o sistema operacional e em seguida transferir para meu local host usando o smbserver do impacket
+
+![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/4.jpg)
