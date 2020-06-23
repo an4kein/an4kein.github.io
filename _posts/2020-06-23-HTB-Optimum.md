@@ -39,7 +39,9 @@ Depois de reiniciar a maquina, ela volta a funcionar perfeitamente..
 
 Uma breve pesquisa por exploits prontos, encontro rapidamente um funcional e em seguida ja tenho uma reverse shell.
 
-***reference: https://gist.githubusercontent.com/AfroThundr3007730/834858b381634de8417f301620a2ccf9/raw/783473905951169e49afaf5958e89b23f5a8743f/cve-2014-6287.py
+***reference:*** https://gist.githubusercontent.com/AfroThundr3007730/834858b381634de8417f301620a2ccf9/raw/783473905951169e49afaf5958e89b23f5a8743f/cve-2014-6287.py
+
+lembre-se de ler o codigo e ajustar de acordo com sua necessidades..
 
 ![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/3.jpg)
 
