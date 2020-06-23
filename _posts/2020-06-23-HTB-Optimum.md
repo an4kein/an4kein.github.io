@@ -49,3 +49,41 @@ lembre-se de ler o codigo e ajustar de acordo com sua necessidades..
 
 ## Privilege Escalation
 
+Vamos iniciar a fase de escalacao de privilegio, seguindo a estrategia vamos identificar quais permissoes nosso user tem
+
+```
+C:\Users\kostas\Desktop>whoami                                                       
+whoami                                    
+optimum\kostas                            
+
+C:\Users\kostas\Desktop>net user kostas
+net user kostas
+User name                    kostas
+Full Name                    kostas
+Comment                      
+User's comment               
+Country/region code          000 (System Default)
+Account active               Yes
+Account expires              Never
+
+Password last set            18/3/2017 2:56:19 
+Password expires             Never
+Password changeable          18/3/2017 2:56:19 
+Password required            Yes
+User may change password     Yes
+
+Workstations allowed         All
+Logon script                 
+User profile                 
+Home directory               
+Last logon                   29/6/2020 3:23:22 
+
+Logon hours allowed          All
+
+Local Group Memberships      *Users                 
+Global Group memberships     *None                  
+The command completed successfully.
+
+
+C:\Users\kostas\Desktop>
+```
