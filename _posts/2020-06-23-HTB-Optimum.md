@@ -1409,3 +1409,8 @@ MS16-032: Security Update for Secondary Logon to Address Elevation of Privile (3
    https://www.exploit-db.com/exploits/39809/ -- Microsoft Windows 7-10 & Server 2008-2012 (x32/x64) - Local Privilege Escalation (MS16-032) (C#)
 ```
 
+Precisei fazer um upgrade em minha reverse shell anterior e agora tenho uma reverse shell em PS.
+
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/8.jpg)
+
+Foi necessario pq pretendo usar essa exploracao https://gist.github.com/intrd/6dda33f61dca560e6996d01c62203374
