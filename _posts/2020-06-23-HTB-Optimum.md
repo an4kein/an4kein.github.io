@@ -1337,4 +1337,6 @@ Mas, existe uma outra alternativa tambem funcional e com um output mais maneiro 
 
 ***reference*** https://github.com/AonCyberLabs/Windows-Exploit-Suggester
 
+`python windows-exploit-suggester.py --database 2020-06-23-mssb.xls --systeminfo /root/HTB-Windows/optimum/systeminfo.txt `
+
 ![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/5.jpg)
