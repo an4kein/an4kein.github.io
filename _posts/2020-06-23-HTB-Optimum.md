@@ -30,3 +30,7 @@ Conforme o resultado do nmap, de todas as portas tcp encontramos apenas a port 8
 **HttpFileServer httpd 2.3**
 
 Antes de continuar com a enumeracao vamos verificar se existe algum exploit pra esse servico.
+
+![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/2.jpg)
+
+Realmente, existe exploit pra esse servico em especial. Porem, estou com problemas de instabilidade com a maquina. :/
