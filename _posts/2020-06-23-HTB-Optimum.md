@@ -1323,3 +1323,9 @@ Encontrei mais informacoes interessantes
 
 ```
     
+```
+=== Registry Autoruns ===
+
+  HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run :
+    "C:\Program Files\VMware\VMware Tools\vmtoolsd.exe" -n vmusr
+```
