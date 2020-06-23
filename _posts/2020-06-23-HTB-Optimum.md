@@ -1329,3 +1329,12 @@ Encontrei mais informacoes interessantes
   HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run :
     "C:\Program Files\VMware\VMware Tools\vmtoolsd.exe" -n vmusr
 ```
+Booom, volteiii depois de ter tentado mais outras formas por exemplo **Port Forward** com as portas que tinha encontrado localmente e tentativas de login nesses mesmos servicos tbmm, nao tive muita sorte e muito menos consegui proceguir....
+
+De volta ao ponto inicial exploit de kernel , divido ter encontrado mais de 50 vulns o wesng nao diz qual o MS*-** APENAS o numero referente ao CVE e isso eu senti difificuldades para procurar exploits mais rapidamentes..
+
+Mas, existe uma outra alternativa tambem funcional e com um output mais maneiro eu achei... 
+
+***reference*** https://github.com/AonCyberLabs/Windows-Exploit-Suggester
+
+![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/5.jpg)
