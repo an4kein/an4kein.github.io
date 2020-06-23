@@ -1,6 +1,6 @@
 ---
 title:     "Hack The Box - Optimum"
-tags: [windows,easy]
+tags: [windows,easy,MS16-032,nishang,wesng,windows-exploit-suggester,winpeas,seatbelt]
 categories: HackTheBox
 ---
 
