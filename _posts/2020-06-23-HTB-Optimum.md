@@ -1340,3 +1340,48 @@ Mas, existe uma outra alternativa tambem funcional e com um output mais maneiro 
 `python windows-exploit-suggester.py --database 2020-06-23-mssb.xls --systeminfo /root/HTB-Windows/optimum/systeminfo.txt `
 
 ![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/5.jpg)
+
+Ok, preciso apenas de exploits local.. entao basta passar a opcao **-l**
+
+![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/6.jpg)
+
+```
+ initiating winsploit version 3.3...
+ database file detected as xls or xlsx based on extension
+ attempting to read from the systeminfo input file
+ systeminfo input file read successfully (ISO-8859-1)
+ querying database file for potential vulnerabilities
+ comparing the 32 hotfix(es) against the 266 potential bulletins(s) with a database of 137 known exploits
+ there are now 246 remaining vulns
+ searching for local exploits only
+ [E] exploitdb PoC, [M] Metasploit module, [*] missing bulletin
+ windows version identified as 'Windows 2012 R2 64-bit'
+ 
+ MS16-075: Security Update for Windows SMB Server (3164038) - Important
+   https://github.com/foxglovesec/RottenPotato
+   https://github.com/Kevin-Robertson/Tater
+   https://bugs.chromium.org/p/project-zero/issues/detail?id=222 -- Windows: Local WebDAV NTLM Reflection Elevation of Privilege
+   https://foxglovesecurity.com/2016/01/16/hot-potato/ -- Hot Potato - Windows Privilege Escalation
+ 
+ MS16-032: Security Update for Secondary Logon to Address Elevation of Privile (3143141) - Important
+   https://www.exploit-db.com/exploits/40107/ -- MS16-032 Secondary Logon Handle Privilege Escalation, MSF
+   https://www.exploit-db.com/exploits/39574/ -- Microsoft Windows 8.1/10 - Secondary Logon Standard Handles Missing Sanitization Privilege Escalation (MS16-032), PoC
+   https://www.exploit-db.com/exploits/39719/ -- Microsoft Windows 7-10 & Server 2008-2012 (x32/x64) - Local Privilege Escalation (MS16-032) (PowerShell), PoC
+   https://www.exploit-db.com/exploits/39809/ -- Microsoft Windows 7-10 & Server 2008-2012 (x32/x64) - Local Privilege Escalation (MS16-032) (C#)
+ 
+ MS16-016: Security Update for WebDAV to Address Elevation of Privilege (3136041) - Important
+   https://www.exploit-db.com/exploits/40085/ -- MS16-016 mrxdav.sys WebDav Local Privilege Escalation, MSF
+   https://www.exploit-db.com/exploits/39788/ -- Microsoft Windows 7 - WebDAV Privilege Escalation Exploit (MS16-016) (2), PoC
+   https://www.exploit-db.com/exploits/39432/ -- Microsoft Windows 7 SP1 x86 - WebDAV Privilege Escalation (MS16-016) (1), PoC
+ 
+ MS15-102: Vulnerabilities in Windows Task Management Could Allow Elevation of Privilege (3089657) - Important
+   https://www.exploit-db.com/exploits/38202/ -- Windows CreateObjectTask SettingsSyncDiagnostics Privilege Escalation, PoC
+   https://www.exploit-db.com/exploits/38200/ -- Windows Task Scheduler DeleteExpiredTaskAfter File Deletion Privilege Escalation, PoC
+   https://www.exploit-db.com/exploits/38201/ -- Windows CreateObjectTask TileUserBroker Privilege Escalation, PoC
+ 
+ MS15-051: Vulnerabilities in Windows Kernel-Mode Drivers Could Allow Elevation of Privilege (3057191) - Important
+   https://github.com/hfiref0x/CVE-2015-1701, Win32k Elevation of Privilege Vulnerability, PoC
+   https://www.exploit-db.com/exploits/37367/ -- Windows ClientCopyImage Win32k Exploit, MSF
+ 
+ done
+ ```
