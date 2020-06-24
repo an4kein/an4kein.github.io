@@ -152,5 +152,24 @@ Precisamos obter mais informacoes basicas como qual sistema, qual arquitetura, q
 
 ![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/4.jpg)
 
+```
 
+Host Name:                 GRANNY
+OS Name:                   Microsoft(R) Windows(R) Server 2003, Standard Edition
+OS Version:                5.2.3790 Service Pack 2 Build 3790
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Server
+OS Build Type:             Uniprocessor Free
+Registered Owner:          HTB
+Registered Organization:   HTB
+Product ID:                69712-296-0024942-44782
+Original Install Date:     4/12/2017, 5:07:40 PM
+System Up Time:            0 Days, 0 Hours, 49 Minutes, 58 Seconds
+System Manufacturer:       VMware, Inc.
+System Model:              VMware Virtual Platform
+System Type:               X86-based PC
+Processor(s):              1 Processor(s) Installed.
+```
+
+Como podemos obervar eh um versao do windows SUPER antiga **Microsoft(R) Windows(R) Server 2003, Standard Edition** e tem varios exploits sem duvidas kk
 
