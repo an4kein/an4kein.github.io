@@ -48,3 +48,48 @@ Nmap done: 1 IP address (1 host up) scanned in 140.13 seconds
 
 fmtp?  Geralmente eu comeco pelas portas que seja mais desconhecidas, mas isso vai de cada um...
 
+Como eu nao sei qual servico esta realmente rodando nessa porta, eu usei o proprio NC em modo verbose, mas nao foi muito util
+
+tentei o amap tbm, mas nada de identificar
+
+```
+root@kali:~/HTB-Windows/arctic# amap -1 10.10.10.11 8300
+amap v5.4 (www.thc.org/thc-amap) started at 2020-06-24 19:11:00 - APPLICATION MAPPING mode
+
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+this connect
+
+Unidentified ports: 10.10.10.11:8300/tcp (total 1).
+
+amap v5.4 finished at 2020-06-24 19:11:12
+```
+
+No entanto, como eh uma port 8300 e na maioria das vezes portas 8080,8081,8090 nessa faixa tem um servico web envolvido, entao eu acessei via browser 
+
+**reference** http://www.networksorcery.com/enp/protocol/ip/ports08000.htm
+
+![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/2.jpg)
+
+
+
