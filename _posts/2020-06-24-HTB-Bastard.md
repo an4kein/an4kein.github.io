@@ -225,6 +225,8 @@ Em seguida, execute o Chimichurri
 
 ![11.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/11.jpg)
 
+Poderiamos testar outras maneiras, pois como visualizamos tinha varios outras vulns e claro que iamos sair testando ate conseguir, mas a ideia era chegar no objetivo de obter SYSTEM e isso eh o que **REALMENTE IMPORTA**
+
 ## Rascunho
 
 ```
