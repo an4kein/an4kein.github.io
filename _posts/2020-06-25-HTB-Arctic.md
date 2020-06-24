@@ -97,4 +97,11 @@ Navegando nos diretorios encontrados e fazendo uma busca rapida no google podemo
 
 ![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/3.jpg)
 
+Encontrei 2 exploracoes interessantes, **Adobe ColdFusion - Directory Traversal** e **Adobe ColdFusion 2018 - Arbitrary File Upload** 
+
+Acabei de testar o Directory Traversal e esta vuln
+
+![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/4.jpg)
+
+
 
