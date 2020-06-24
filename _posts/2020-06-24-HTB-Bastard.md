@@ -45,3 +45,8 @@ Navegando ate o servido HTTP na porta 80, indentificco um DRUPAL
 
 ![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/2.jpg)
 
+Huuuuuum... Veriricando o source do site eu vejo que trata-se de um **DRUPAL 7** e de acordo com minha experiencia existe exploits pra versao.
+
+![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/3.jpg)
+
+
