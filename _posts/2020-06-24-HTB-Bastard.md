@@ -49,4 +49,11 @@ Huuuuuum... Veriricando o source do site eu vejo que trata-se de um **DRUPAL 7**
 
 ![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/3.jpg)
 
+## Find exploits
+
+Uma busca rapida encontramos varias formas de explorar
+
+![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/4.jpg)
+
+
 
