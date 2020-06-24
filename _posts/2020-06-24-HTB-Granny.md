@@ -52,3 +52,26 @@ Nmap done: 1 IP address (1 host up) scanned in 17.30 seconds
 ```
 
 A versao do webserver **(Microsoft IIS httpd 6.0)** eh bem antiga, alem disso no webdav temos diversos metodos habilitados **(|_  Allowed Methods: OPTIONS, TRACE, GET, HEAD, DELETE, COPY, MOVE, PROPFIND, PROPPATCH, SEARCH, MKCOL, LOCK, UNLOCK)**
+
+Vamos continuar nossa enumeracao... Existe projeto bem interessante que desenvolveu um script bem interessante para buscar vulns usando o proprio nmap
+
+**reference** https://medium.com/@alexander.tyutin/continuous-vulnerability-scanning-with-nmap-ea8821d587b0
+
+
+```
+root@kali:~/HTB-Windows/granny# git clone https://github.com/vulnersCom/nmap-vulners /usr/share/nmap/scripts/vulners
+Cloning into '/usr/share/nmap/scripts/vulners'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 68 (delta 1), reused 0 (delta 0), pack-reused 62
+Unpacking objects: 100% (68/68), 427.88 KiB | 550.00 KiB/s, done.
+root@kali:~/HTB-Windows/granny# nmap --script-updatedb
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-24 13:56 EDT
+NSE: Updating rule database.
+NSE: Script Database updated successfully.
+Nmap done: 0 IP addresses (0 hosts up) scanned in 0.67 seconds
+```
+
+
+
