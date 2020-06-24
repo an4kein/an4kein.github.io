@@ -1,6 +1,6 @@
 ---
 title:     "Hack The Box - Bastard"
-tags: [windows,medium]
+tags: [windows,medium,MS10-059,wes,windows-exploit-suggester]
 categories: HackTheBox
 ---
 
