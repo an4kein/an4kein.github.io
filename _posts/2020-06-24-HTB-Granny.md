@@ -173,3 +173,44 @@ Processor(s):              1 Processor(s) Installed.
 
 Como podemos obervar eh um versao do windows SUPER antiga **Microsoft(R) Windows(R) Server 2003, Standard Edition** e tem varios exploits sem duvidas kk
 
+Usando o windows-exploit-suggester.py podemos obter uma lista com sugestoes de exploracao..
+
+```
+initiating winsploit version 3.3...
+database file detected as xls or xlsx based on extension
+attempting to read from the systeminfo input file
+systeminfo input file read successfully (ascii)
+querying database file for potential vulnerabilities
+comparing the 0 hotfix(es) against the 356 potential bulletins(s) with a database of 137 known exploits
+there are now 356 remaining vulns
+searching for local exploits only
+[E] exploitdb PoC, [M] Metasploit module, [*] missing bulletin
+windows version identified as 'Windows 2003 SP2 32-bit'
+
+MS15-051: Vulnerabilities in Windows Kernel-Mode Drivers Could Allow Elevation of Privilege (3057191) - Important
+  https://github.com/hfiref0x/CVE-2015-1701, Win32k Elevation of Privilege Vulnerability, PoC
+  https://www.exploit-db.com/exploits/37367/ -- Windows ClientCopyImage Win32k Exploit, MSF
+
+MS14-070: Vulnerability in TCP/IP Could Allow Elevation of Privilege (2989935) - Important
+  http://www.exploit-db.com/exploits/35936/ -- Microsoft Windows Server 2003 SP2 - Privilege Escalation, PoC
+
+MS14-068: Vulnerability in Kerberos Could Allow Elevation of Privilege (3011780) - Critical
+  http://www.exploit-db.com/exploits/35474/ -- Windows Kerberos - Elevation of Privilege (MS14-068), PoC
+
+MS14-062: Vulnerability in Message Queuing Service Could Allow Elevation of Privilege (2993254) - Important
+  http://www.exploit-db.com/exploits/34112/ -- Microsoft Windows XP SP3 MQAC.sys - Arbitrary Write Privilege Escalation, PoC
+  http://www.exploit-db.com/exploits/34982/ -- Microsoft Bluetooth Personal Area Networking (BthPan.sys) Privilege Escalation
+
+MS14-040: Vulnerability in Ancillary Function Driver (AFD) Could Allow Elevation of Privilege (2975684) - Important
+  https://www.exploit-db.com/exploits/39525/ -- Microsoft Windows 7 x64 - afd.sys Privilege Escalation (MS14-040), PoC
+  https://www.exploit-db.com/exploits/39446/ -- Microsoft Windows - afd.sys Dangling Pointer Privilege Escalation (MS14-040), PoC
+
+MS14-026: Vulnerability in .NET Framework Could Allow Elevation of Privilege (2958732) - Important
+  http://www.exploit-db.com/exploits/35280/, -- .NET Remoting Services Remote Command Execution, PoC
+
+MS14-002: Vulnerability in Windows Kernel Could Allow Elevation of Privilege (2914368) - Important
+MS11-080: Vulnerability in Ancillary Function Driver Could Allow Elevation of Privilege (2592799) - Important
+MS11-011: Vulnerabilities in Windows Kernel Could Allow Elevation of Privilege (2393802) - Important
+MS09-020: Vulnerabilities in Internet Information Services (IIS) Could Allow Elevation of Privilege (970483) - Important
+done
+```
