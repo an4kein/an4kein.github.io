@@ -73,5 +73,28 @@ NSE: Script Database updated successfully.
 Nmap done: 0 IP addresses (0 hosts up) scanned in 0.67 seconds
 ```
 
+Usando e verificando os resultados obtidos
+
+```
+root@kali:~/HTB-Windows/granny# nmap -sV -Pn 10.10.10.15 --script=vulners/vulners.nse -p 80
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-24 14:01 EDT
+Nmap scan report for 10.10.10.15
+Host is up (0.21s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 6.0
+|_http-server-header: Microsoft-IIS/6.0
+| vulners: 
+|   cpe:/a:microsoft:iis:6.0: 
+|_      IIS_PHP_AUTH_BYPASS.NASL        7.5     https://vulners.com/nessus/IIS_PHP_AUTH_BYPASS.NASL
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 34.96 seconds
+```
+
+Bom, eu particulamente nao achei muito eficiente pra essa maquina.. Mas isso eh normal acontecer.. O recomendado eh voce testar nao so os scripts conhecidos mais outros tambem....
+
+Continuando...
 
 
