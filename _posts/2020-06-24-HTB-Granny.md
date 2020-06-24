@@ -227,3 +227,10 @@ Mas tambem nao tive sucesso...
 
 Esse funcionou mas spawnou uma shell e entao vou tentar add um user e usar o runas para fazer login o algo nesse sentidoo
 
+Funcionou e adicionou um user admin no system com as seguintes creds. **[*] Adding Admin User:hacker Pass:Hacked!...**
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/7.jpg)
+
+
+
+
