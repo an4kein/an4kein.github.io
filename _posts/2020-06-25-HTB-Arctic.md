@@ -103,5 +103,13 @@ Acabei de testar o Directory Traversal e esta vuln
 
 ![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/4.jpg)
 
+Crack HASH rapiamente buscando no google encontramos a senha relacionada a hash encontrada
+
+![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/5.jpg)
 
 
+```
+ #Wed Mar 22 20:53:51 EET 2017 rdspassword=0IA/F[[E>[$_6& \\Q>[K\=XP \n password=2F635F6D20E3FDE0C53075A84B68FB07DCEC9B03 encrypted=true 
+ HASH: 2F635F6D20E3FDE0C53075A84B68FB07DCEC9B03
+ SENHA: happyday
+```
