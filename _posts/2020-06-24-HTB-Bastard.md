@@ -106,5 +106,106 @@ Mas primeiro precisamos transferir o output do comando  **systeminfo** para noss
 
 ![10.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/10.jpg)
 
+```
+root@kali:~/HTB-Windows/bastard# ls
+drupal  Invoke-PowerShellTcp.ps1  nmap  shell.ps1  wpe
+root@kali:~/HTB-Windows/bastard# cd wpe/
+root@kali:~/HTB-Windows/bastard/wpe# ls
+systeminfo.txt
+root@kali:~/HTB-Windows/bastard/wpe# python /opt/windowsPrivEsc/wesng/wes.py systeminfo.txt -i 'Elevation of Privilege' --exploits-only >> exploits_sugest_wes.txt
+usage: wes.py [-u] [--update-wes] [--version] [--definitions [DEFINITIONS]]
+              [-p INSTALLEDPATCH [INSTALLEDPATCH ...]] [-d] [-e]
+              [--hide HIDDENVULN [HIDDENVULN ...]] [-i IMPACTS [IMPACTS ...]]
+              [-s SEVERITIES [SEVERITIES ...]] [-o [OUTPUTFILE]]
+              [--muc-lookup] [-h]
+              systeminfo [qfefile]
+wes.py: error: argument --definitions: Definitions file 'definitions.zip' does not exist. Try running wes.py --update first.
+root@kali:~/HTB-Windows/bastard/wpe# python /opt/windowsPrivEsc/wesng/wes.py --update
+Windows Exploit Suggester 0.98 ( https://github.com/bitsadmin/wesng/ )
+[+] Updating definitions
+[+] Obtained definitions created at 20200616
+root@kali:~/HTB-Windows/bastard/wpe# python /opt/windowsPrivEsc/wesng/wes.py systeminfo.txt -i 'Elevation of Privilege' --exploits-only >> exploits_sugest_wes.txt
+root@kali:~/HTB-Windows/bastard/wpe# 
+```
 
+Output do wes.py
+
+```
+Windows Exploit Suggester 0.98 ( https://github.com/bitsadmin/wesng/ )
+[+] Parsing systeminfo output
+[+] Operating System
+    - Name: Windows Server 2008 R2 for x64-based Systems
+    - Generation: 2008 R2
+    - Build: 7600
+    - Version: None
+    - Architecture: x64-based
+    - Installed hotfixes: None
+[+] Loading definitions
+    - Creation date of definitions: 20200616
+[+] Determining missing patches
+[+] Filtering duplicate vulnerabilities
+[+] Applying display filters
+[+] Found vulnerabilities
+
+Date: 20120612
+CVE: CVE-2012-0217
+KB: KB2709715
+Title: Vulnerabilities in Windows Kernel Could Allow Elevation of Privilege
+Affected product: Windows Server 2008 R2 for x64-based Systems
+Affected component: 
+Severity: Important
+Impact: Elevation of Privilege
+Exploits: https://www.exploit-db.com/exploits/28718/, https://www.exploit-db.com/exploits/46508/
+
+Date: 20130108
+CVE: CVE-2013-0008
+KB: KB2778930
+Title: Vulnerability in Windows Kernel-Mode Driver Could Allow Elevation of Privilege
+Affected product: Windows Server 2008 R2 for x64-based Systems
+Affected component: 
+Severity: Important
+Impact: Elevation of Privilege
+Exploit: http://www.exploit-db.com/exploits/24485
+
+Date: 20110208
+CVE: CVE-2010-4398
+KB: KB2393802
+Title: Vulnerabilities in Windows Kernel Could Allow Elevation of Privilege
+Affected product: Windows Server 2008 R2 for x64-based Systems
+Affected component: 
+Severity: Important
+Impact: Elevation of Privilege
+Exploits: http://www.exploit-db.com/bypassing-uac-with-user-privilege-under-windows-vista7-mirror/, http://www.exploit-db.com/exploits/15609/
+
+[+] Missing patches: 3
+    - KB2778930: patches 1 vulnerability
+    - KB2393802: patches 1 vulnerability
+    - KB2709715: patches 1 vulnerability
+[+] KB with the most recent release date
+    - ID: KB2778930
+    - Release date: 20130108
+
+[+] Done. Displaying 3 of the 207 vulnerabilities found.
+```
+
+Agora, usando o windows-exploit-suggester.py e com a opcao para apenas exploits LOCAL
+
+```
+root@kali:/opt/Windows-PrivEsc-Tools/Windows-Exploit-Suggester# python windows-exploit-suggester.py --database 2020-06-23-mssb.xls --systeminfo /root/HTB-Windows/bastard/wpe/systeminfo.txt -l
+[*] initiating winsploit version 3.3...
+[*] database file detected as xls or xlsx based on extension
+[*] attempting to read from the systeminfo input file
+[+] systeminfo input file read successfully (UTF-16)
+[*] querying database file for potential vulnerabilities
+[*] comparing the 0 hotfix(es) against the 197 potential bulletins(s) with a database of 137 known exploits
+[*] there are now 197 remaining vulns
+[*] searching for local exploits only
+[+] [E] exploitdb PoC, [M] Metasploit module, [*] missing bulletin
+[+] windows version identified as 'Windows 2008 R2 64-bit'
+[*] 
+[M] MS13-005: Vulnerability in Windows Kernel-Mode Driver Could Allow Elevation of Privilege (2778930) - Important
+[E] MS11-011: Vulnerabilities in Windows Kernel Could Allow Elevation of Privilege (2393802) - Important
+[E] MS10-059: Vulnerabilities in the Tracing Feature for Services Could Allow Elevation of Privilege (982799) - Important
+[*] done
+```
 
