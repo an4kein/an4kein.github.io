@@ -113,3 +113,10 @@ Crack HASH rapiamente buscando no google encontramos a senha relacionada a hash 
  HASH: 2F635F6D20E3FDE0C53075A84B68FB07DCEC9B03
  SENHA: happyday
 ```
+
+Tentei login com  a senha encontrada, mas sem sucesso
+
+![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/6.jpg)
+
+Vamos tentar entao a segunda exploracao que encontramos **Adobe ColdFusion 2018 - Arbitrary File Upload**
+
