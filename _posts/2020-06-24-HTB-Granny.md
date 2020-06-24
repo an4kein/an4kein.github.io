@@ -214,3 +214,9 @@ MS11-011: Vulnerabilities in Windows Kernel Could Allow Elevation of Privilege (
 MS09-020: Vulnerabilities in Internet Information Services (IIS) Could Allow Elevation of Privilege (970483) - Important
 done
 ```
+
+Tentei o primeiro da lista **MS15-051** de resultados, no entanto, a maquina de pau 
+
+![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/5.jpg)
+
+Vou tentar o MS14-068 (Critical), ja que o anterior era apenas (Important)
