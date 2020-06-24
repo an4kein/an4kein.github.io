@@ -1,6 +1,6 @@
 ---
 title:     "Hack The Box - Arctic"
-tags: [windows,easy]
+tags: [windows,easy,ColdFusion,CVE-2010-2861]
 categories: HackTheBox
 ---
 
