@@ -28,3 +28,23 @@ Nmap done: 1 IP address (1 host up) scanned in 299.41 seconds
 
 3 portas abertas, vamos continuar com a enumeracao
 
+```
+root@kali:~/HTB-Windows/arctic# nmap -sV -sC -p135,8500,49154 -oN nmap/specific_ports 10.10.10.11
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-24 18:45 EDT
+Stats: 0:00:47 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 33.33% done; ETC: 18:48 (0:01:32 remaining)
+Nmap scan report for 10.10.10.11
+Host is up (0.19s latency).
+
+PORT      STATE SERVICE VERSION
+135/tcp   open  msrpc   Microsoft Windows RPC
+8500/tcp  open  fmtp?
+49154/tcp open  msrpc   Microsoft Windows RPC
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 140.13 seconds
+```
+
+fmtp?  Geralmente eu comeco pelas portas que seja mais desconhecidas, mas isso vai de cada um...
+
