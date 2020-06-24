@@ -231,6 +231,11 @@ Funcionou e adicionou um user admin no system com as seguintes creds. **[*] Addi
 
 ![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/7.jpg)
 
+Estanho... verificando os user o usuario add com o exploit nao aparece
+
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/8.jpg)
+
+
 
 
 
