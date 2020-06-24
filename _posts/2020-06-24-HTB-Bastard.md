@@ -92,4 +92,6 @@ Enfim pegamos nossa reverse shell
 
 ![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/8.jpg)
 
+## Privilege Escalation
 
+Vamos comecar a sessao de PE e assim ter acesso de user e system
