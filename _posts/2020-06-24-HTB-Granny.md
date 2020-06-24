@@ -1,5 +1,5 @@
 ---
-title:     "Hack The Box -Granny"
+title:     "Hack The Box - Granny"
 tags: [windows,easy,MS09-020,CVE-2009-1535]
 categories: HackTheBox
 ---
