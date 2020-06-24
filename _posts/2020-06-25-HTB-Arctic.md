@@ -91,5 +91,10 @@ No entanto, como eh uma port 8300 e na maioria das vezes portas 8080,8081,8090 n
 
 ![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/2.jpg)
 
+## Exploitation
+
+Navegando nos diretorios encontrados e fazendo uma busca rapida no google podemos identificar que trata-se de um produto do ADOBE nossa missao agora eh identificar sua versao e/ou buscar exploits para isso.
+
+![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/3.jpg)
 
 
