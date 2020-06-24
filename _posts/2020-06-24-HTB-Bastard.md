@@ -68,4 +68,13 @@ Realmente eh vulneravel
 
 ![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/5.jpg)
 
+## Reverse Shell
+
+Estou um tempinho tentando transferir arquivos para maquina e assim obter uma reverse shell
+
+Acabei de fazer um teste e ver se o alvo se comunicava de volta comigo e sim, esta tudo ok.. preciso continuar tentando encontrar uma maneira de transferir arquivos..
+
+AHhh, lembrando que eu ja dei uma verificada rapidas nos arquivos encontrados no diretorio do drupal.
+
+![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bastard/6.jpg)
 
