@@ -220,3 +220,10 @@ Tentei o primeiro da lista **MS15-051** de resultados, no entanto, a maquina de 
 ![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/5.jpg)
 
 Vou tentar o MS14-068 (Critical), ja que o anterior era apenas (Important)
+
+Mas tambem nao tive sucesso...
+
+![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-granny/6.jpg)
+
+Esse funcionou mas spawnou uma shell e entao vou tentar add um user e usar o runas para fazer login o algo nesse sentidoo
+
