@@ -26,6 +26,6 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 Percebemos que existe apenas a porta 80 aberta, rodando uma servidor WEB na versao bem velha 
 
-Lembro que na maquina ![Granny](https://an4kein.github.io/hackthebox/2020/06/24/HTB-Granny/)  explorei uma versao identica, logo vou testar o exploit usado nela pra tentar obter exito.. 
+Lembro que na maquina [Granny](https://an4kein.github.io/hackthebox/2020/06/24/HTB-Granny/)  explorei uma versao identica, logo vou testar o exploit usado nela pra tentar obter exito.. 
 
 ***preference*** https://github.com/g0rx/iis6-exploit-2017-CVE-2017-7269/blob/master/iis6%20reverse%20shell
