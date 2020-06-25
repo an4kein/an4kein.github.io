@@ -1,6 +1,6 @@
 ---
 title:     "Hack The Box - Grandpa"
-tags: [windows,easy]
+tags: [windows,easy,MS09-020,CVE-2009-1535]
 categories: HackTheBox
 ---
 
