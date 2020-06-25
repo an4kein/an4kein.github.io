@@ -53,39 +53,16 @@ Como eu nao sei qual servico esta realmente rodando nessa porta, eu usei o propr
 tentei o amap tbm, mas nada de identificar
 
 ```
-root@kali:~/HTB-Windows/arctic# amap -1 10.10.10.11 8300
+root@kali:~/HTB-Windows/arctic# amap -1 10.10.10.11 8500
 amap v5.4 (www.thc.org/thc-amap) started at 2020-06-24 19:11:00 - APPLICATION MAPPING mode
 
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
-this connect
 
 Unidentified ports: 10.10.10.11:8300/tcp (total 1).
 
 amap v5.4 finished at 2020-06-24 19:11:12
 ```
 
-No entanto, como eh uma port 8300 e na maioria das vezes portas 8080,8081,8090 nessa faixa tem um servico web envolvido, entao eu acessei via browser 
+No entanto, como eh uma port 8500 e na maioria das vezes portas 8080,8081,8090 nessa faixa tem um servico web envolvido, entao eu acessei via browser 
 
 **reference** http://www.networksorcery.com/enp/protocol/ip/ports08000.htm
 
