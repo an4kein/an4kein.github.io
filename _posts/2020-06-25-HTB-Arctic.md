@@ -160,3 +160,10 @@ C:\ColdFusion8\runtime\bin>
 
 ```
 
+Agora usando o systeminfo transferimos seu output paara nosso localhost
+
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-arctic/8.jpg)
+
+
+
+
