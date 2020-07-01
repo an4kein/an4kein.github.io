@@ -2516,3 +2516,14 @@ De acordo com a descricao, essas abaixo sao mais interessantes
 | [5623] Microsoft IIS up to 7.5 File Name Tilde privilege escalation
 ```
 
+Entao comecei a pesquisar sobre essas duas vulns 
+
+Testei e nada de funcionar, nao era vuln.
+
+Vamos voltar ao gobuster e tentar novamente...
+
+Entao depois de um tempo algo interessante aparece
+
+`gobuster dir -w /usr/share/seclists/Discovery/Web-Content/big.txt -x txt,html,php,asp,aspx,jsp -t 30 -u http://10.10.10.93`
+
+![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/3.jpg)
