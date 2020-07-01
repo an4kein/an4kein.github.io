@@ -2527,3 +2527,15 @@ Entao depois de um tempo algo interessante aparece
 `gobuster dir -w /usr/share/seclists/Discovery/Web-Content/big.txt -x txt,html,php,asp,aspx,jsp -t 30 -u http://10.10.10.93`
 
 ![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/3.jpg)
+
+```
+/aspnet_client (Status: 301)
+[ERROR] 2020/07/01 17:12:34 [!] Get http://10.10.10.93/gfx4_v4gfxed.asp: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+[ERROR] 2020/07/01 17:13:16 [!] net/http: request canceled (Client.Timeout exceeded while reading body)
+/transfer.aspx (Status: 200)
+/uploadedfiles (Status: 301)
+```
+
+Vamos, tentar fazer upload de uma shell
+
+![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/4.jpg)
