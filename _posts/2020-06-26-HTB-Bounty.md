@@ -2539,3 +2539,7 @@ Entao depois de um tempo algo interessante aparece
 Vamos, tentar fazer upload de uma shell
 
 ![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/4.jpg)
+
+Ja fui logo tentando uma webshell em .aspx mas nao passou , precisamos fazer bypass
+
+![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/5.jpg)
