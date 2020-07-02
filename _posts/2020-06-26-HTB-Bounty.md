@@ -1,6 +1,6 @@
 ---
 title:     "Hack The Box - Bounty"
-tags: [windows,easy]
+tags: [windows,easy,web.config,juicypotato,MS10-059]
 categories: HackTheBox
 ---
 
