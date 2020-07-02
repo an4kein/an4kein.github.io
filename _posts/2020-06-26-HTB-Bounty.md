@@ -2795,3 +2795,12 @@ MS10-059: Vulnerabilities in the Tracing Feature for Services Could Allow Elevat
 done
 ```
 
+## GET SYSTEM
+
+## JuicyPotato
+
+Conforme o que tinhamos enumerado no inicio, entao rapidamente usando JuicyPotato consigo escalar .
+
+`SeImpersonatePrivilege` estava habilitado
+
+![13.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/13.jpg)
