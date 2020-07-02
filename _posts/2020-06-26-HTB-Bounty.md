@@ -2543,3 +2543,64 @@ Vamos, tentar fazer upload de uma shell
 Ja fui logo tentando uma webshell em .aspx mas nao passou , precisamos fazer bypass
 
 ![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/5.jpg)
+
+NOSSA! ENTREI EM UMA TOCA DO COELHO quase que nao saia.....
+
+Varios metodos de bypass e nada dava certo, eu consegui bypassar mas nao carregava o payload conforme o esperado...
+
+depois de muito tempo, enviando arquivos e modificando a request o server gerou um error que me tirou do buracoo
+
+![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/6.jpg)
+
+REQUEST:
+
+```
+POST /transfer.aspx HTTP/1.1
+Host: 10.10.10.93
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.10.10.93/transfer.aspx
+Content-Type: multipart/form-data; boundary=---------------------------1913420059401053279383526251
+Content-Length: 828
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+-----------------------------1913420059401053279383526251
+Content-Disposition: form-data; name="__VIEWSTATE"
+
+
+/wEPDwUKMTI3ODM5MzQ0Mg9kFgICAw8WAh4HZW5jdHlwZQUTbXVsdGlwYXJ0L2Zvcm0tZGF0YRYCAgUPDxYGHgRUZXh0BR5JbnZhbGlkIEZpbGUuIFBsZWFzZSB0cnkgYWdhaW4eCUZvcmVDb2xvcgqNAR4EXyFTQgIEZGRkq0GqB5cFI7nIrPt0yWe2NZHfR4E=
+-----------------------------1913420059401053279383526251
+Content-Disposition: form-data; name="__EVENTVALIDATION"
+
+
+/wEWAgKRguSEBwLt3oXMA+Z7jSeG5nKMage1rlOMIbTwvX2Q
+-----------------------------1913420059401053279383526251
+Content-Disposition: form-data; name="FileUpload1"; filename=""
+Content-Type: application/octet-stream
+
+
+
+
+-----------------------------1913420059401053279383526251
+Content-Disposition: form-data; name="btnUpload"
+
+
+Upload
+-----------------------------1913420059401053279383526251--
+```
+
+Fui entao pesquisar mais sobre ele e sua relacao com o IIS 7.5 
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/7.jpg)
+
+Comecei entao a explorar e rapidamente ja tinha uma webshell
+
+
+
+
+
+
