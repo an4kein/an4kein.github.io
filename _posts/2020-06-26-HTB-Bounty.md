@@ -2769,3 +2769,29 @@ Comecando a sessao para escalar privilegios...
 ![11.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/11.jpg)
 
 
+O mesmo proceedimento feito em maquinas anteriores
+
+![12.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/12.jpg)
+
+em seguida
+
+`python windows-exploit-suggester.py --database 2020-07-01-mssb.xls --systeminfo /root/HTB-Windows/bounty/pe/systeminfo.txt -l`
+
+```
+initiating winsploit version 3.3...
+database file detected as xls or xlsx based on extension
+attempting to read from the systeminfo input file
+systeminfo input file read successfully (ascii)
+querying database file for potential vulnerabilities
+comparing the 0 hotfix(es) against the 197 potential bulletins(s) with a database of 137 known exploits
+there are now 197 remaining vulns
+searching for local exploits only
+[E] exploitdb PoC, [M] Metasploit module, [*] missing bulletin
+windows version identified as 'Windows 2008 R2 64-bit'
+
+MS13-005: Vulnerability in Windows Kernel-Mode Driver Could Allow Elevation of Privilege (2778930) - Important
+MS11-011: Vulnerabilities in Windows Kernel Could Allow Elevation of Privilege (2393802) - Important
+MS10-059: Vulnerabilities in the Tracing Feature for Services Could Allow Elevation of Privilege (982799) - Important
+done
+```
+
