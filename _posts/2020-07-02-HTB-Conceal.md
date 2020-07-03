@@ -104,3 +104,6 @@ Nmap done: 1 IP address (1 host up) scanned in 130.15 seconds
 
 preciso pesquisar mais como funciona isso...
 
+pesquisando no google como enumerar encontrei algumas coisas interessantes...
+
+![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/2.jpg)
