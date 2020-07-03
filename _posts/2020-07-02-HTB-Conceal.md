@@ -107,3 +107,30 @@ preciso pesquisar mais como funciona isso...
 pesquisando no google como enumerar encontrei algumas coisas interessantes...
 
 ![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/2.jpg)
+
+Estou usando isso como referencia
+
+
+https://etutorials.org/Networking/network+security+assessment/Chapter+11.+Assessing+IP+VPN+Services/11.2+Attacking+IPsec+VPNs/
+
+https://github.com/SpiderLabs/ikeforce
+
+usando o ike-scan default no kali obtenho algumas informacoes
+
+```
+root@kali:~/HTB-Windows/conceal# ike-scan 10.10.10.116
+Starting ike-scan 1.9.4 with 1 hosts (http://www.nta-monitor.com/tools/ike-scan/)
+10.10.10.116    Main Mode Handshake returned HDR=(CKY-R=d50cedb591589c4a) SA=(Enc=3DES Hash=SHA1 Group=2:modp1024 Auth=PSK LifeType=Seconds LifeDuration(4)=0x00007080) VID=1e2b516905991c7d7c96fcbfb587e46100000009 (Windows-8) VID=4a131c81070358455c5728f20e95452f (RFC 3947 NAT-T) VID=90cb80913ebb696e086381b5ec427b1f (draft-ietf-ipsec-nat-t-ike-02\n) VID=4048b7d56ebce88525e7de7f00d6c2d3 (IKE Fragmentation) VID=fb1de3cdf341b7ea16b7e5be0855f120 (MS-Negotiation Discovery Capable) VID=e3a5966a76379fe707228231e5ce8652 (IKE CGA version 1)
+
+Ending ike-scan 1.9.4: 1 hosts scanned in 0.213 seconds (4.68 hosts/sec).  1 returned handshake; 0 returned notify
+```
+
+verificando o resultado obtido, temos `(Windows-8)` temos tambem algumas hashes, verificando com o `hash-identify` vejo que trata-se de `MD5` vou copiar todas elas em um arquivo e usar algum decrypt online e ver se consigo quebrar.
+
+```
+4a131c81070358455c5728f20e95452f
+90cb80913ebb696e086381b5ec427b1f
+4048b7d56ebce88525e7de7f00d6c2d3
+fb1de3cdf341b7ea16b7e5be0855f120
+e3a5966a76379fe707228231e5ce8652
+```
