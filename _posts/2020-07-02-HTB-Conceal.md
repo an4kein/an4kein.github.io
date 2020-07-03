@@ -171,3 +171,7 @@ depois de criada a lista com o comando acima com as possiveis transformacoes, va
 ```
 while read line; do (echo "Valid trans found: $line" && sudo ike-scan -M $line 10.10.10.116) | grep -B14 "1 returned handshake" | grep "Valid trans found" ; done < ike-dict.txt
 ```
+
+Ate o momento so foi encontrada uma
+
+`Valid trans found: --trans=5,2,1,2`
