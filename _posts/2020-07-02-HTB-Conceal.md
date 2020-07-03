@@ -125,6 +125,8 @@ Starting ike-scan 1.9.4 with 1 hosts (http://www.nta-monitor.com/tools/ike-scan/
 Ending ike-scan 1.9.4: 1 hosts scanned in 0.213 seconds (4.68 hosts/sec).  1 returned handshake; 0 returned notify
 ```
 
+![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/3.jpg)
+
 verificando o resultado obtido, temos `(Windows-8)` temos tambem algumas hashes, verificando com o `hash-identify` vejo que trata-se de `MD5` vou copiar todas elas em um arquivo e usar algum decrypt online e ver se consigo quebrar.
 
 ```
@@ -134,3 +136,7 @@ verificando o resultado obtido, temos `(Windows-8)` temos tambem algumas hashes,
 fb1de3cdf341b7ea16b7e5be0855f120
 e3a5966a76379fe707228231e5ce8652
 ```
+https://crackstation.net/
+![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/4.jpg)
+
+`4048b7d56ebce88525e7de7f00d6c2d3:FRAGMENTATION`
