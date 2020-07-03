@@ -2237,6 +2237,7 @@ Temos algumas informacoes importantes
 ```
 iso.3.6.1.2.1.1.4.0 = STRING: "IKE VPN password PSK - 9C8B1A372B1878851BE2C097031B6E43"
 iso.3.6.1.2.1.1.5.0 = STRING: "Conceal"
+iso.3.6.1.2.1.25.3.2.1.3.7 = STRING: "WAN Miniport (IKEv2)"
 ```
 
 Coontinuandoo
@@ -2547,3 +2548,9 @@ Read data files from: /usr/bin/../share/nmap
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 # Nmap done at Fri Jul  3 15:38:32 2020 -- 1 IP address (1 host up) scanned in 58.42 seconds
 ```
+
+Crackeando a hash encontrada referente ao password da VPN
+
+9C8B1A372B1878851BE2C097031B6E43:Dudecake1!
+
+![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/6.jpg)
