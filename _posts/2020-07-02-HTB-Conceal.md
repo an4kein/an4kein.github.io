@@ -140,3 +140,29 @@ https://crackstation.net/
 ![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/4.jpg)
 
 `4048b7d56ebce88525e7de7f00d6c2d3:FRAGMENTATION`
+
+Dando continuidade na enumeracao do IKE encontrei um outro site good 
+
+https://book.hacktricks.xyz/pentesting/ipsec-ike-vpn-pentesting
+
+```
+root@kali:~/HTB-Windows/conceal# ike-scan -M 10.10.10.116 
+Starting ike-scan 1.9.4 with 1 hosts (http://www.nta-monitor.com/tools/ike-scan/)
+10.10.10.116    Main Mode Handshake returned
+        HDR=(CKY-R=3e7e59cd10722ca3)
+        SA=(Enc=3DES Hash=SHA1 Group=2:modp1024 Auth=PSK LifeType=Seconds LifeDuration(4)=0x00007080)
+        VID=1e2b516905991c7d7c96fcbfb587e46100000009 (Windows-8)
+        VID=4a131c81070358455c5728f20e95452f (RFC 3947 NAT-T)
+        VID=90cb80913ebb696e086381b5ec427b1f (draft-ietf-ipsec-nat-t-ike-02\n)
+        VID=4048b7d56ebce88525e7de7f00d6c2d3 (IKE Fragmentation)
+        VID=fb1de3cdf341b7ea16b7e5be0855f120 (MS-Negotiation Discovery Capable)
+        VID=e3a5966a76379fe707228231e5ce8652 (IKE CGA version 1)
+
+Ending ike-scan 1.9.4: 1 hosts scanned in 0.204 seconds (4.91 hosts/sec).  1 returned handshake; 0 returned notify
+```
+
+agora vamos fazer um brute force, para encontrar uma transformacao valida... ja sabemos que o tipo de auth eh PSK e exige uma config de VPN..
+
+```
+for ENC in 1 2 3 4 5 6 7/128 7/192 7/256 8; do for HASH in 1 2 3 4 5 6; do for AUTH in 1 2 3 4 5 6 7 8 64221 64222 64223 64224 65001 65002 65003 65004 65005 65006 65007 65008 65009 65010; do for GROUP in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18; do echo "--trans=$ENC,$HASH,$AUTH,$GROUP" >> ike-dict.txt ;done ;done ;done ;done
+```
