@@ -175,3 +175,14 @@ while read line; do (echo "Valid trans found: $line" && sudo ike-scan -M $line 1
 Ate o momento so foi encontrada uma
 
 `Valid trans found: --trans=5,2,1,2`
+
+Finalmente concluido
+
+![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/5.jpg)
+
+```
+root@kali:~/HTB-Windows/conceal# while read line; do (echo "Valid trans found: $line" && ike-scan -M $line 10.10.10.116) | grep -B14 "1 returned handshake" | grep "Valid t
+rans found" ; done < ike-dict.txt
+^AValid trans found: --trans=5,2,1,2
+Valid trans found: --trans=7/128,2,1,2
+```
