@@ -186,3 +186,10 @@ rans found" ; done < ike-dict.txt
 ^AValid trans found: --trans=5,2,1,2
 Valid trans found: --trans=7/128,2,1,2
 ```
+
+De volta a maquina, haha
+
+Bom, vamos fazer uma enumeracao decente certo? a maquina eh HARD e com os procedimentos realizados anteriormente nao fui muito longe, pois deve esta faltando algo...
+
+enumerar, enumerar e enumerar...
+
