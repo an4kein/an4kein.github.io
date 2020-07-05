@@ -2554,3 +2554,73 @@ Crackeando a hash encontrada referente ao password da VPN
 9C8B1A372B1878851BE2C097031B6E43:Dudecake1!
 
 ![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/6.jpg)
+
+voltmamos, depois de passar horas lendo a documentacao consegui estabelecer a conexao corretamente..
+
+***resource*** https://wiki.strongswan.org/projects/strongswan/wiki/ConnSection
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/7.jpg)
+
+
+minha config  
+
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/8.jpg)
+
+ipsec.conf
+```
+# ipsec.conf - strongSwan IPsec configuration file
+
+# basic configuration
+
+config setup
+	# strictcrlpolicy=yes
+	# uniqueids = no
+
+# Add connections here.
+
+# Sample VPN connections
+
+#conn sample-self-signed
+#      leftsubnet=10.1.0.0/16
+#      leftcert=selfCert.der
+#      leftsendcert=never
+#      right=192.168.0.2
+#      rightsubnet=10.2.0.0/16
+#      rightcert=peerCert.der
+#      auto=start
+
+#conn sample-with-ca-cert
+#      leftsubnet=10.1.0.0/16
+#      leftcert=myCert.pem
+#      right=192.168.0.2
+#      rightsubnet=10.2.0.0/16
+#      rightid="C=CH, O=Linux strongSwan CN=peer name"
+#      auto=start
+#
+
+conn Conceal
+	authby=psk
+	keyexchange=ikev1
+	auto=route
+	type=transport
+	ike=3des-sha1-modp1024!
+	left=10.10.14.37
+  right=10.10.10.116
+	rightsubnet=10.10.10.116[tcp]
+	esp=3des-sha1!
+ 
+```
+
+ipsec.secrets
+
+```
+# This file holds shared secrets or RSA private keys for authentication.
+
+# RSA private key for this host, authenticating it to any other host
+# which knows the public part.
+
+10.10.10.116 : PSK "Dudecake1!"
+
+```
+
+Depois que estabelecemos a conexao, voltamos a enumerar novamente
