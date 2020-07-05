@@ -2557,7 +2557,13 @@ Crackeando a hash encontrada referente ao password da VPN
 
 voltmamos, depois de passar horas lendo a documentacao consegui estabelecer a conexao corretamente..
 
-***resource*** https://wiki.strongswan.org/projects/strongswan/wiki/ConnSection
+***resource***
+
+https://wiki.strongswan.org/projects/strongswan/wiki/ConnSection
+
+https://wiki.strongswan.org/issues/778
+
+https://ubuntuforums.org/archive/index.php/t-2387199.html
 
 ![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-conceal/7.jpg)
 
@@ -2605,7 +2611,7 @@ conn Conceal
 	type=transport
 	ike=3des-sha1-modp1024!
 	left=10.10.14.37
-  right=10.10.10.116
+        right=10.10.10.116
 	rightsubnet=10.10.10.116[tcp]
 	esp=3des-sha1!
  
