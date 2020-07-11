@@ -24,7 +24,7 @@ Em paralelo eu comecei fazer outros scan specificos e algumas pesquisas, depois 
 
 ![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-shocker/3.jpg)
 
-Como podes observar existe o dir `/cgi-bin/` no entanto eu ainda precisava encontrar um `file` com a extension `.cgi ou .sh ` para o exploit funcionar
+Como podes observar existe o dir `/cgi-bin/` no entanto eu ainda precisava encontrar um `file` com uma das extensoes `.sh, .py, .pl, .cgi ` para o exploit funcionar
 
 entao usando o gobuster, rapidamente encontro o que eu precisava...
 
