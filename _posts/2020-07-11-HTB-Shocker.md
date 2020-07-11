@@ -55,3 +55,26 @@ $ python -c 'import pty;pty.spawn("/bin/bash")';
 /bin/sh: 1: python: not found
 $ python3 -c 'import pty;pty.spawn("/bin/bash")'
 ```
+
+## Privilege Escalation
+
+Bom, rapidamente encontro os vetores para escalar privilegios..
+
+usando o `sudo -l` e o comando `id`
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-shocker/7.jpg)
+
+voce pode tbm utilizar outras tools que faz isso de forma automatica, lembre-se tempo eh ourooooo..
+
+veja que voce pode executar o `perl`  como root usando o `sudo` e tbm o nosso user faz parte do grupo `110(lxd)` que tbm eh possivel escalar por ele. Nao vou abordar isso aqui,, se vc quiser veja isso https://www.hackingarticles.in/lxd-privilege-escalation/
+
+
+### Using sudo perl
+
+com o site https://gtfobins.github.io/gtfobins/perl/#sudo voce encontra rapidamente os comandos necessarios para fazer isso...
+
+`sudo /usr/bin/perl -e 'exec "/bin/sh";'`
+
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-shocker/8.jpg)
+
+
