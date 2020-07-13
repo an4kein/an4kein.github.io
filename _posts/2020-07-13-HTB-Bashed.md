@@ -56,7 +56,7 @@ Linux Kernel < 4.4.0-116 (Ubuntu 16.04.4) - Local Privilege Escalation`
 
 ### Process
 
-Analisando um pouco mais, o usuario `scriptmanager` nao precisa de password para executar usando o `sudo`
+Analisando um pouco mais, o usuario `scriptmanager` nao precisa de password para executar, usando o `sudo`
 
 `(scriptmanager : scriptmanager) NOPASSWD: ALL`
 
@@ -64,7 +64,7 @@ Analisando um pouco mais, o usuario `scriptmanager` nao precisa de password para
 
 Depois de trocar de usuario comm o seguinte comando `sudo -u scriptmanager /bin/bash`
 
-Comeco a analisar os processos, para identificar algo sendo executado pelo o root.. usei o [pspy](https://github.com/DominicBreuker/pspy)
+antes de obter root usando kernel exploit estava analisando os processos, para identificar algo sendo executado pelo o root.. usei o [pspy](https://github.com/DominicBreuker/pspy)
 
 ![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/9.jpg)
 
