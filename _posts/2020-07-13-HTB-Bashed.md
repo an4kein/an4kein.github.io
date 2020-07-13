@@ -54,4 +54,44 @@ Linux Kernel < 4.4.0-116 (Ubuntu 16.04.4) - Local Privilege Escalation`
 
 ![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/7.jpg)
 
+### Process
+
+Analisando um pouco mais, o usuario `scriptmanager` nao precisa de password para executar usando o `sudo`
+
+`(scriptmanager : scriptmanager) NOPASSWD: ALL`
+
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/8.jpg)
+
+Depois de trocar de usuario comm o seguinte comando `sudo -u scriptmanager /bin/bash`
+
+Comeco a analisar os processos, para identificar algo sendo executado pelo o root.. usei o [pspy](https://github.com/DominicBreuker/pspy)
+
+![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/9.jpg)
+
+
+Veja que em minuto em minuto  o `root` abre o `/scripts` em seguida executa o test.py. Entao, eu criei o  meu proprio `test.py` e troquei pelo o existente.
+
+![10.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/10.jpg)
+
+Feito, isso. eh so aguardar um minuto e nosso `rootbash` sera criado com o `suid` de root no `\tmp`
+
+antes: 
+
+![11.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/11.jpg)
+
+depois:
+
+![12.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/12.jpg)
+
+Agora, basta ir ate o `\tmp` da permissao de execucao ao `rootbash`  `chmod +x rootbash` em seguida executar `rootbash -p` e teremos nossa shell de root
+
+![13.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/13.jpg)
+
+
+
+
+
+
+
+
 
