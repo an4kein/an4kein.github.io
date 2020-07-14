@@ -1,6 +1,6 @@
 ---
 title:     "Hack The Box - Nibbles"
-tags: [linux,easy, CVE: 2015-6967, rootbash]
+tags: [linux,easy, CVE 2015-6967, rootbash]
 categories: Linux
 ---
 
