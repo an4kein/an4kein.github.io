@@ -138,8 +138,29 @@ Em seguida monto entao esse share no meu kali
 
 ![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/5.jpg)
 
+Lembra? eu tenho permissao de escrita.. fiz um teste entao escrevendo um arquivo de texto simples e acessando ele na porta 8808 `http://10.10.10.97:8808/anakein.txt` tentei tbm escrever uma webshell bem conhecida Antak
 
+![6.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/6.jpg)
 
+Veja, a webshell nao carregava mais o arquivo de texto sim. 
 
+![7.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/7.jpg)
 
+ de imediato fiquei tentando fazer bypass e usar outras tecnicas mas sem sucesso
+ 
+ ![9.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/9.jpg)
+
+ depois de enviar uma webshell em `.php` tive sucesso
+ 
+ aah. mas antes disso eu observei que o arquivo enviado depois de alguns minutos era apagado...
+ 
+![8.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/8.jpg)
+ 
+ continuandoo..
+ 
+ depois de enviar uma webshell em PHP rapidamente tenho uma webshell ativa...
+ 
+![10.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/10.jpg)
+
+ 
 
