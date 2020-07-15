@@ -212,6 +212,25 @@ Depois de ler o pdf rapidamente tenho uma reverse shell de root
 
 ![15.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/15.jpg)
 
+### Spawn Shell
 
+`python -c 'import pty;pty.spawn("/bin/bash")'`
+
+apois isso comeco a usar tbm os scripts de privesc para windows, mas sem resultados
+
+comeco entao o traballho manual de pesquisa, port hash, password, login alguma coisa do tipo
+
+entao, no dir do root encontro um bash_history com o login do Administrator
+
+![16.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/16.jpg)
+
+Com o login do administrator usando o `winexe` temos uma shell de ADMINISTRATOR
+
+`winexe -U 'administrator%u6!4ZwgwOM#^OBf#Nwnh' //10.10.10.97 cmd.exe`
+
+![17.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/17.jpg)
+
+
+![18.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/18.jpg)
 
 
