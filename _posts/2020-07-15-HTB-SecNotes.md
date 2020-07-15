@@ -1,6 +1,6 @@
 ---
 title:     "Hack The Box - SecNotes"
-tags: [windows,medium]
+tags: [windows,medium, Abusing wsl, nishang]
 categories: HackTheBox
 ---
 
