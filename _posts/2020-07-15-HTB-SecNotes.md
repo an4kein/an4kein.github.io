@@ -117,4 +117,29 @@ Consigo acesso a informacoes com um nivel mais elevado e uma das notas encontro 
 
 ![2.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/2.jpg)
 
+com essa cred tento entao acesso ao SMB usando crackmapexec 
+
+```
+\\secnotes.htb\new-site
+tyler / 92g!mA8BGjOirkL%OG*&
+```
+
+`crackmapexec smb 10.10.10.97 -u 'tyler' -p '92g!mA8BGjOirkL%OG*&' --shares`
+
+![3.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/3.jpg)
+
+Conseguimos mais algumas informacoes importantes como a versao do windows e um share com permissao de escrite e leitura
+
+Em seguida monto entao esse share no meu kali
+
+***reference*** https://book.hacktricks.xyz/pentesting/pentesting-smb
+
+`mount -t cifs -o username=tyler,password='92g!mA8BGjOirkL%OG*&' //10.10.10.97/new-site /mnt/new-site`
+
+![5.jpg](https://raw.githubusercontent.com/an4kein/an4kein.github.io/master/img/htb-secnotes/5.jpg)
+
+
+
+
+
 
