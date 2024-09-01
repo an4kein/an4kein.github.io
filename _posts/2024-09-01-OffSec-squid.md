@@ -198,7 +198,54 @@ Se o payload for executado corretamente, você obterá uma reverse shell com pri
 
 ![image](https://github.com/user-attachments/assets/18646561-f3aa-42d7-96b3-df8839be472f)
 
-### Conclusão
+### Acesso com Privilégios de Administrador
 
-Utilizando o Nishang, foi possível estabelecer uma reverse shell através de um comando PowerShell, o que permitiu um controle completo sobre o sistema alvo. Essa técnica é poderosa e eficaz para cenários onde o acesso ao sistema operacional é necessário para explorar mais profundamente a máquina comprometida.
+A reverse shell que obtivemos utilizando o Nishang já nos concedeu acesso com privilégios de administrador do sistema. Isso significa que não foi necessário realizar movimento lateral ou escalar privilégios adicionais para obter controle total sobre a máquina.
+
+#### Capturando as Flags
+
+Com o acesso total ao sistema, foi possível localizar e capturar as flags necessárias:
+
+- **local.txt**: Encontrada no diretório raiz `C:\` da máquina comprometida.
+  
+  ![image](https://github.com/user-attachments/assets/f394fed5-0bb9-440d-9dd2-a3da5216d293)
+
+- **proof.txt**: Localizada no diretório `C:\Users\Administrador\Desktop`, confirmando a exploração bem-sucedida.
+  
+  ![image](https://github.com/user-attachments/assets/561fa1c1-9592-4e87-a3a9-9582f848897e)
+
+### Conclusão e Resumo
+
+Nesta exploração, aprendemos a importância de uma enumeração cuidadosa e de como vulnerabilidades simples, como senhas padrão ou falta de autenticação em ferramentas como o phpMyAdmin, podem ser exploradas para obter acesso completo ao sistema. O uso de técnicas de shell uploading e a execução de scripts como o **Invoke-PowerShellTcp** do Nishang mostraram-se eficazes para obter uma reverse shell, concedendo controle total sobre a máquina alvo.
+
+#### Pontos Chave Aprendidos:
+
+- **Enumeração é Fundamental**: Identificar portas e serviços abertos é a base para qualquer exploração.
+- **Exploração de Senhas Padrão**: A tentativa de login com credenciais padrão pode abrir portas inesperadas.
+- **Uso de Shell Uploading**: O uploading de uma shell PHP permitiu a execução remota de comandos.
+- **PowerShell para Reverse Shells**: A utilização de scripts PowerShell, como os fornecidos pelo Nishang, pode facilitar o acesso remoto.
+- **Importância de Acessos com Privilégios**: A reverse shell adquirida com privilégios de administrador eliminou a necessidade de escalar privilégios.
+
+### Mitigação: Como Proteger-se contra essas Explorações
+
+Para evitar que explorações como as descritas acima sejam bem-sucedidas, seguem algumas medidas de mitigação que podem ser implementadas:
+
+1. **Alterar Senhas Padrão**: Certifique-se de que todas as contas, especialmente as administrativas, não utilizem senhas padrão ou fáceis de adivinhar. Utilize senhas fortes e complexas.
+
+2. **Desativar Contas não Utilizadas**: Desative ou remova contas de administração que não sejam necessárias, como a conta root no phpMyAdmin.
+
+3. **Restringir Acesso ao phpMyAdmin**: Limite o acesso ao phpMyAdmin a partir de IPs confiáveis ou redes específicas. Considere desativá-lo completamente em ambientes de produção se não for estritamente necessário.
+
+4. **Aplicar Políticas de Segurança para Scripts PHP**: Configure o servidor para restringir o uso de funções perigosas no PHP, como `system()` e `exec()`. Desabilite a opção de criar ou modificar arquivos através de scripts PHP, especialmente em diretórios acessíveis pela web.
+
+5. **Habilitar Logging e Monitoramento**: Habilite logs detalhados para todas as atividades administrativas e revise-os regularmente para detectar comportamentos suspeitos. Ferramentas de monitoramento podem ajudar a identificar tentativas de ataque.
+
+6. **Implementar Controles de Acesso Granulares**: Utilize mecanismos de controle de acesso para limitar os privilégios de usuários e serviços ao mínimo necessário para realizar suas funções.
+
+7. **Atualizar e Patchar o Sistema Regularmente**: Mantenha o servidor e todos os softwares, como o phpMyAdmin, atualizados com os patches mais recentes para corrigir vulnerabilidades conhecidas.
+
+Implementando essas medidas, você pode reduzir significativamente o risco de compromissos semelhantes no seu ambiente.
+
+
+
 
