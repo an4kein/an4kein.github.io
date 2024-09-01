@@ -70,4 +70,44 @@ Isso permitirá que você visualize o serviço em execução na porta **8080** a
 
 Depois de acessar a porta **8080**, a análise deve continuar para identificar a natureza do serviço em execução nessa porta. Isso pode incluir a identificação de um painel de administração, uma aplicação web vulnerável ou qualquer outro tipo de serviço que possa ser explorado. Dependendo do que for encontrado, as próximas etapas podem envolver testes de penetração mais profundos, como exploração de vulnerabilidades, escalonamento de privilégios ou a captura de credenciais.
 
+### Continuando com a Enumeração
 
+Após acessar a porta **8080** e explorar o serviço disponível, é crucial continuar a enumeração e procurar por elementos que possam ser explorados. Ao navegar pela página, observe cuidadosamente todos os detalhes, pois muitas vezes há pistas que podem levar a vulnerabilidades.
+
+Se você prestar atenção, no final da página existem **aliases** que redirecionam para recursos como `phpinfo`, `phpmyadmin`, `adminer`, entre outros. Esses aliases podem fornecer informações valiosas ou ser pontos de entrada para exploração adicional.
+
+#### Explorando o `phpinfo`
+
+O **phpinfo** é uma página que exibe a configuração do PHP e pode revelar informações críticas, como diretórios do servidor, caminhos de arquivos e outras configurações que podem ser exploradas. É comum encontrar detalhes sobre diretórios onde podemos tentar escrever um **payload malicioso**.
+
+#### Tentativa de Login com Senhas Padrão
+
+Sempre que você encontrar páginas de login, como `phpmyadmin` ou `adminer`, tente acessar utilizando senhas padrão. Muitos administradores esquecem de alterar as credenciais de login, deixando o sistema vulnerável a acessos não autorizados. 
+
+Aqui estão alguns exemplos de credenciais padrão que você pode tentar:
+
+- **admin:admin**
+- **admin:** *(sem senha)*
+- **admin:password**
+
+Se você não souber a senha padrão para um produto específico, uma simples pesquisa no Google com o nome do produto e "default password" geralmente fornece as credenciais padrão. Em muitos casos, o próprio site do fornecedor lista as senhas padrão para os produtos.
+
+![image](https://github.com/user-attachments/assets/23f7c87e-b34f-420c-b12b-0c0ed27abf88)
+
+### Acesso Ganhado: Login como `root` sem Senha
+
+Durante a exploração das páginas disponíveis, tentei utilizar o login com credenciais padrão. Notavelmente, ao tentar acessar com o usuário **root** sem senha, consegui obter acesso à página de administração.
+
+Este tipo de vulnerabilidade é comum em configurações mal protegidas, onde as credenciais padrão não foram alteradas após a instalação do sistema. O acesso como **root** sem senha geralmente concede controle total sobre o sistema ou a aplicação, permitindo a execução de comandos, upload de arquivos maliciosos, ou até mesmo a modificação de configurações críticas.
+
+#### Próximos Passos
+
+Com o acesso root garantido, a próxima fase envolve:
+
+1. **Verificação de privilégios:** Confirme o nível de acesso disponível e verifique se há restrições ou se você possui controle total sobre o sistema.
+   
+2. **Exploração adicional:** Explore o painel de administração para identificar qualquer funcionalidade que permita upload de arquivos ou execução de comandos no servidor. Essas funcionalidades podem ser usadas para enviar um **payload** malicioso e obter um **reverse shell**.
+
+3. **Busca por arquivos sensíveis:** Procure por arquivos de configuração, logs, ou backups que possam conter informações sensíveis, como credenciais ou configurações do sistema.
+
+4. **Escalabilidade:** Se o acesso root não oferece controle completo, busque por formas de escalar privilégios ou explorar outros serviços no sistema.
