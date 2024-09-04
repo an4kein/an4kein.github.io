@@ -98,3 +98,33 @@ Esta etapa foi fundamental para conseguir o controle total do sistema e completa
 
 ![image](https://github.com/user-attachments/assets/9e7a2300-b142-496e-a362-4c31e7d605a8)
 
+## Mitigação dos Problemas Encontrados
+
+### 1. **Acesso inicial e exploração do CMS Grav**
+   - **Mitigação**: 
+     - **Manter o CMS atualizado**: É crucial que o Grav e seus plugins sejam mantidos sempre atualizados, para evitar a exploração de vulnerabilidades conhecidas.
+     - **Configuração de permissões de arquivos**: Revise as permissões de arquivos e pastas, assegurando que somente os usuários necessários tenham acesso de escrita a diretórios sensíveis.
+     - **Autenticação forte**: Use autenticação multifator (MFA) para proteger o acesso ao painel administrativo e outras áreas críticas.
+
+### 2. **Exploração do CMS com exploit não autenticado**
+   - **Mitigação**:
+     - **Validação de entradas**: Implementar verificações rigorosas nas entradas de dados no CMS pode prevenir injeções de comando.
+     - **Desabilitar funcionalidades desnecessárias**: Se o sistema não precisa de certas funcionalidades (ex.: execução de comandos), desative-as para reduzir a superfície de ataque.
+     - **Aplicar segurança no servidor web**: Configurar um WAF (Web Application Firewall) para bloquear tentativas de exploits conhecidos.
+
+### 3. **Obtenção de reverse shell**
+   - **Mitigação**:
+     - **Monitoramento contínuo**: Utilize sistemas de detecção de intrusões (IDS) como o Wazuh para monitorar o tráfego de rede e identificar atividades suspeitas.
+     - **Restringir uso de ferramentas de rede**: Ferramentas como `nc` (Netcat) devem ser desativadas ou configuradas com restrições em ambientes de produção.
+     - **Desabilitar portas desnecessárias**: Limite a exposição de portas e serviços críticos, restringindo o acesso a serviços como SSH e Netcat.
+
+### 4. **Escalonamento de privilégios usando PHP SUID**
+   - **Mitigação**:
+     - **Remover o bit SUID**: O PHP raramente precisa ter o bit SUID habilitado. Remover essa configuração pode reduzir riscos de escalonamento de privilégios.
+     - **Verificar permissões de arquivos executáveis**: Realize auditorias regulares no sistema para identificar e corrigir permissões de arquivos executáveis que podem representar risco.
+     - **Limitar o uso de scripts como root**: Se for necessário executar scripts com privilégios elevados, isso deve ser feito de forma controlada com ferramentas como `sudo` e regras restritivas.
+
+### 5. **Instabilidade durante exploração de escalonamento de privilégio**
+   - **Mitigação**:
+     - **Criação de snapshots**: Antes de realizar qualquer alteração ou exploração no ambiente, crie snapshots ou backups para facilitar a restauração ao estado original.
+     - **Ambiente de teste dedicado**: Realize testes de segurança em ambientes isolados que espelhem o ambiente de produção, sem impactar diretamente o ambiente em uso.
