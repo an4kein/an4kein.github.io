@@ -98,6 +98,32 @@ Esta etapa foi fundamental para conseguir o controle total do sistema e completa
 
 ![image](https://github.com/user-attachments/assets/9e7a2300-b142-496e-a362-4c31e7d605a8)
 
+## Privilege Escalation Techniques
+
+Durante a fase de escalonamento de privilégios em uma auditoria de segurança, várias técnicas e comandos são usados para identificar potenciais falhas de configuração ou vulnerabilidades que possam ser exploradas. Aqui estão alguns dos principais comandos que você pode utilizar para encontrar e explorar vetores de ataque para escalonamento de privilégios:
+
+### Comandos de Verificação:
+
+- `cat /etc/apache2/apache2.conf`: Exibe o conteúdo do arquivo de configuração do Apache, o que pode revelar credenciais ou configurações inseguras.
+  
+- `ls -alh /var/spool/cron`: Verifica as tarefas cron armazenadas, que podem ser manipuladas para executar comandos com privilégios elevados.
+
+- `ls -al /etc/cron*`: Exibe os cron jobs e permissões, permitindo avaliar se há vulnerabilidades nos scripts de automação do sistema.
+
+- `ls -la /`: Lista os arquivos e diretórios na raiz do sistema, permitindo identificar arquivos com permissões incorretas que possam ser usados para escalonamento.
+
+- `cat ~/.mysql_history`, `cat ~/.bash_history`, `cat ~/.php_history`: Verifica os históricos de comandos do MySQL, Bash e PHP, que podem conter credenciais ou comandos exploráveis.
+
+- `cat /etc/httpd/logs/access.log`, `cat /var/log/apache2/access.log`: Exibe os logs de acesso do Apache, úteis para detectar padrões de exploração e acessos não autorizados.
+
+- `find / -perm -1000 -type d 2>/dev/null`: Procura por diretórios com o *sticky bit*, que podem ser explorados para o controle de arquivos.
+
+- `find / -perm -g=s -type f 2>/dev/null`: Busca arquivos com bit SUID ou SGID, que podem ser explorados para escalonamento de privilégios.
+
+- `find / -perm -u=s -type f 2>/dev/null`: Pesquisa arquivos SUID, que permitem a execução de binários com privilégios do usuário root, se mal configurados.
+
+Esses comandos são fundamentais para uma análise de privilege escalation, buscando permissões incorretas, vulnerabilidades em binários SUID, tarefas agendadas mal configuradas, e arquivos de log que possam conter evidências de explorações passadas.
+
 ## Mitigação dos Problemas Encontrados
 
 ### 1. **Acesso inicial e exploração do CMS Grav**
