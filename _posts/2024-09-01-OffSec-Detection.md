@@ -4,6 +4,8 @@ tags: [Linux,easy,OffSec,changedetection,rce]
 categories: OffSecProvingGrounds
 ---
 
+![image](https://github.com/user-attachments/assets/4ee86e3a-f3fa-4b2d-9ce1-e70979c3706f)
+
 ## Enumeration
 
 A primeira etapa no processo de exploração foi a enumeração da máquina alvo utilizando o **Nmap**. Realizei um scan completo de portas para identificar todos os serviços em execução no endereço IP **192.168.246.97**. 
