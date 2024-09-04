@@ -8,20 +8,7 @@ categories: OffSecProvingGrounds
 
 ## Enumeration
 
-Aqui está uma versão revisada do relatório com foco na fase de enumeração e a inclusão do comando adicional que você mencionou:
-
----
-
-# OffSec Proving Grounds - Astronaut
-
-**Tags:** linux, easy, GravCMS  
-**Categorias:** OffSecProvingGrounds
-
-![image](https://github.com/user-attachments/assets/5cc98efa-789e-4ca2-adf1-378c54f6a041)
-
-## 1. Enumeration
-
-### 1.1 Varredura Inicial com Nmap
+### Varredura Inicial com Nmap
 
 Para iniciar a enumeração da máquina "Astronaut", foi realizada uma varredura completa de portas utilizando o `nmap`, com o objetivo de identificar todas as portas abertas.
 
@@ -38,7 +25,7 @@ nmap -T4 -p- -Pn 192.168.188.12 -oN nmap-all-ports.log -v
 - `-oN nmap-all-ports.log`: Salva os resultados da varredura em um arquivo de log nomeado `nmap-all-ports.log`.
 - `-v`: Ativa o modo verbose para maior detalhamento durante a execução.
 
-### 1.2 Varredura Adicional com NmapAutomator
+### Varredura Adicional com NmapAutomator
 
 Além da varredura inicial com `nmap`, utilizamos o script `nmapAutomator` para realizar uma enumeração mais abrangente, cobrindo todos os tipos de varredura suportados pelo script.
 
@@ -94,3 +81,20 @@ Na etapa de escalonamento de privilégios, encontrei algumas complicações, nã
 Minha teoria sobre isso é que, se você obtém uma reverse shell e executa imediatamente essas ferramentas automáticas de enumeração, o vetor de ataque que deveria ser explorado pode desaparecer. Somente depois de reiniciar a máquina e realizar a enumeração manualmente é que o processo de escalonamento de privilégios parece funcionar corretamente, permitindo finalmente a obtenção de acesso root.
 
 Essa situação sugere que, em algumas máquinas vulneráveis, os scripts automáticos podem, por algum motivo, interferir na exploração adequada dos vetores de ataque, tornando a abordagem manual mais eficaz em certos cenários.
+
+Usando o comando `find / -perm -u=s -type f 2>/dev/null`, descobrimos que o arquivo `/usr/bin/php7.4` estava com o *setuid* habilitado, o que indica que ele pode ser executado com privilégios elevados (no caso, como root).
+
+Consultando o site [GTFOBins](https://gtfobins.github.io/gtfobins/php/#suid), encontramos um método de escalonamento de privilégios que utiliza o PHP com *setuid* para obter acesso root. O PHP pode ser explorado de forma a executar comandos arbitrários com privilégios elevados, já que o binário está com o bit SUID ativo.
+
+No caso específico do `php7.4`, utilizamos o seguinte comando baseado na documentação do GTFOBins:
+
+```
+php -r "pcntl_exec('/bin/sh', ['-p']);"
+```
+
+Isso nos permitiu escalar os privilégios e obter acesso root na máquina. O importante aqui é que, ao habilitar o *setuid* em um binário como o PHP, ele se torna uma vulnerabilidade grave, pois permite que qualquer usuário regular execute comandos como superusuário. 
+
+Esta etapa foi fundamental para conseguir o controle total do sistema e completar a exploração.
+
+![image](https://github.com/user-attachments/assets/9e7a2300-b142-496e-a362-4c31e7d605a8)
+
