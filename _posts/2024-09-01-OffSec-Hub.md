@@ -4,6 +4,8 @@ tags: [Linux,easy,OffSec,CVE-2024-27697,rce]
 categories: OffSecProvingGrounds
 ---
 
+![image](https://github.com/user-attachments/assets/8251781c-fbb1-4ebd-9528-0550512e5506)
+
 ## Enumeration
 
 Nesta etapa, iremos realizar a enumeração da máquina chamada `hub` utilizando a ferramenta `nmapAutomator`, que automatiza o processo de varredura com o `nmap` de forma mais eficiente e completa.
