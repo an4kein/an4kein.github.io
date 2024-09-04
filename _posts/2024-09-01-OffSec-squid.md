@@ -4,6 +4,8 @@ tags: [Windows,easy,OffSec,phpmyadmin]
 categories: OffSecProvingGrounds
 ---
 
+![image](https://github.com/user-attachments/assets/034b33ee-65e4-4247-b22a-88ee988b86c4)
+
 ## Enumeration
 
 A primeira etapa do processo de exploração começou com a enumeração da máquina alvo utilizando o **Nmap**. Inicialmente, foi realizado um **scan de portas completo** para identificar todos os serviços em execução na máquina **Squid**. 
