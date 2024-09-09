@@ -37,3 +37,19 @@ Usando o **Kali Linux** e a ferramenta **searchsploit**, encontrei uma exploraç
 ![image](https://github.com/user-attachments/assets/6dd6a90b-0bbf-4fe8-8853-292394cb5b14)
 
 Isso indica que a versão do Grafana em execução na máquina possui uma vulnerabilidade que pode permitir a leitura de arquivos arbitrários através de uma exploração de "directory traversal", potencialmente oferecendo acesso a arquivos sensíveis no sistema.
+
+## Exploitation
+
+Usamos a opção **-m** no **searchsploit** para fazer o **mirror** do exploit encontrado. 
+
+![image](https://github.com/user-attachments/assets/dae91a96-26cf-40a5-bdb3-71371388a43a)
+
+Em seguida, executamos a exploração com o seguinte comando:
+
+```
+python3 50581.py -H http://192.168.225.181:3000
+```
+
+![image](https://github.com/user-attachments/assets/cdc467f8-0379-4a69-bd21-4732682d6bdf)
+
+Conforme demonstrado na imagem acima, conseguimos ver claramente o arquivo **passwd** localizado no diretório **/etc**. Isso confirma que o exploit de **Directory Traversal** funcionou corretamente, permitindo o acesso a arquivos sensíveis do sistema, como o **/etc/passwd**, que contém informações sobre os usuários do sistema.
