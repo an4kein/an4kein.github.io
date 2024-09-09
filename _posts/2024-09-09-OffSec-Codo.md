@@ -34,3 +34,8 @@ Ao verificar a porta 80, identificamos que ela está executando um fórum.
 ![image](https://github.com/user-attachments/assets/4a7141a8-987e-4084-9213-1480b7d8ce73)
 
 Como sabemos, sempre que encontramos páginas de login, é recomendável tentar credenciais padrão, como admin:admin ou admin:password , entre outras combinações comumente utilizadas. Além disso, muitas vezes as credenciais padrão são fornecidas diretamente pela documentação do fabricante do produto, que pode ser facilmente encontrada no Google. Isso pode oferecer um caminho rápido para o acesso inicial, especialmente se as configurações de segurança não tiverem sido ajustadas corretamente.
+
+Pesquisando por explorações disponíveis, e utilizando como de costume a ferramenta searchsploit, encontrei algumas vulnerabilidades interessantes que podem ser testadas.
+
+![image](https://github.com/user-attachments/assets/b119e57e-dcbd-48e3-9f52-1a41ebaf6237)
+
