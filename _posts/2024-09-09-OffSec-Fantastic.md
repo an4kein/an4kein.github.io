@@ -86,4 +86,32 @@ SuperSecureP@ssw0rd
 
 ## Privilege Escalation
 
+Agora, usando o comando:
+
+```
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+```
+
+podemos melhorar a interatividade da sessão SSH, obtendo um terminal mais completo. Isso permite utilizar funcionalidades como **autocompletar**, **histórico de comandos** e outros recursos normalmente disponíveis em um terminal bash interativo.
+
+Usando o comando `id`, podemos ver que nosso usuário está no grupo **disk**, o que nos permite acessar diretamente dispositivos de armazenamento do sistema, como discos e partições. Isso pode abrir a possibilidade de ler ou manipular arquivos e dados sensíveis que estejam nesses dispositivos, aumentando significativamente as opções de exploração.
+
+Usando o comando `debugfs`, podemos visualizar e manipular diretamente os sistemas de arquivos em uma partição específica. Isso nos permite acessar arquivos e diretórios mesmo que eles não sejam normalmente visíveis ou acessíveis, possibilitando a leitura de arquivos sensíveis ou a recuperação de dados deletados.
+
+![image](https://github.com/user-attachments/assets/de0d11fc-ee40-4434-a7f5-a65fc1ad2577)
+
+Podemos, então, tentar ler o arquivo **id_rsa** localizado na pasta **/root/.ssh/**. Caso consigamos, será possível utilizar essa chave privada para autenticar como **root** via SSH, garantindo acesso completo ao sistema.
+
+![image](https://github.com/user-attachments/assets/64ece4da-ea69-4230-96cd-b2865104da16)
+
+Copie o conteúdo do arquivo **id_rsa** para um novo arquivo em sua máquina. Após isso, lembre-se de ajustar as permissões de leitura do arquivo para garantir a segurança, utilizando o comando:
+
+```
+chmod 600 id_rsa
+```
+
+Isso garante que o arquivo **id_rsa** tenha as permissões corretas, permitindo que apenas o proprietário o leia e evitando possíveis alertas de segurança ao utilizá-lo para se autenticar via SSH como **root**.
+
+![image](https://github.com/user-attachments/assets/f2a343c5-9ba4-46f4-b930-301bd9fcc731)
+
 
