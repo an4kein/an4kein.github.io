@@ -4,7 +4,7 @@ tags: [linux,easy,codoforum v5.1.105]
 categories: OffSecProvingGrounds
 ---
 
-![image](https://github.com/user-attachments/assets/463729da-b9be-4ace-afb6-0d483b30a3c8)
+![image](https://github.com/user-attachments/assets/e753cdcc-36b2-4d0e-81de-01bb005fca9f)
 
 ## Enumeration
 
