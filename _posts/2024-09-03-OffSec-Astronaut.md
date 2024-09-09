@@ -4,7 +4,7 @@ tags: [linux,easy,GravCMS]
 categories: OffSecProvingGrounds
 ---
 
-![image](https://github.com/user-attachments/assets/5cc98efa-789e-4ca2-adf1-378c54f6a041)
+![image](https://github.com/user-attachments/assets/c027b7ff-86c2-4da6-a5e2-967147a617e3)
 
 ## Enumeration
 
