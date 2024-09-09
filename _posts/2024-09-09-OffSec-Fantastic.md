@@ -114,4 +114,42 @@ Isso garante que o arquivo **id_rsa** tenha as permissões corretas, permitindo 
 
 ![image](https://github.com/user-attachments/assets/f2a343c5-9ba4-46f4-b930-301bd9fcc731)
 
+## Mitigation
 
+1. **Atualização de Software**:
+   - **Grafana**: A exploração utilizada no cenário é baseada em uma vulnerabilidade conhecida (CVE-2021-43798). Para evitar a exploração desta e de futuras vulnerabilidades, **mantenha o Grafana atualizado** com a versão mais recente disponível. Isso garante que correções de segurança estejam aplicadas e diminui o risco de ataques conhecidos.
+   - **SSH**: Verifique se o servidor SSH está configurado para a versão mais recente e utilize as práticas recomendadas de segurança, como o desabilitar o login direto de root via SSH.
+
+2. **Restrição de Acesso a Arquivos Sensíveis**:
+   - **Permissões de Arquivo**: Reforce as permissões de arquivos críticos, como **/etc/passwd** e **id_rsa**. Somente usuários autorizados devem ter acesso a essas informações sensíveis. Use **chmod 600** para restringir o acesso a chaves privadas SSH e proteja os diretórios críticos com permissões adequadas.
+   - **Desabilitar acesso ao grupo "disk"**: O grupo **disk** deve ser reservado apenas para processos que realmente necessitam de acesso a dispositivos de armazenamento. Remova usuários desnecessários desse grupo para evitar o acesso não autorizado a dispositivos de disco.
+
+3. **Controle de Acesso SSH**:
+   - **Autenticação SSH**: Configure o SSH para **não permitir o login de root** diretamente, ajustando o arquivo `/etc/ssh/sshd_config` com a diretiva `PermitRootLogin no`. Isso forçará os usuários a logarem com contas de usuário limitadas e, posteriormente, escalarem privilégios usando `sudo` ou outro mecanismo controlado.
+   - **Autenticação por chave**: Utilize **autenticação por chave SSH** sempre que possível, e implemente **autenticação de dois fatores (2FA)** para aumentar a segurança.
+
+4. **Isolamento de Serviços**:
+   - **Segregação de Serviços**: Utilize contêineres, como Docker, ou máquinas virtuais para isolar serviços como Grafana e Prometheus. O isolamento dificulta o impacto de uma exploração bem-sucedida, limitando o acesso a outros serviços no sistema.
+   - **Controle de Acesso à Rede**: Implemente regras de firewall para limitar o acesso às portas usadas pelos serviços, como as portas 3000 (Prometheus) e 9090 (Grafana). Apenas IPs autorizados devem ter acesso direto a esses serviços.
+
+5. **Monitoramento e Logs**:
+   - **Monitoramento de Logs**: Use ferramentas como **Wazuh** ou **Splunk** para monitorar logs do sistema em tempo real. Isso permite a detecção de atividades anômalas, como tentativas de acessar arquivos sensíveis ou uso indevido do SSH. Configure alertas automáticos para quando atividades suspeitas forem detectadas.
+   - **Auditoria de Comandos**: Ative a auditoria de comandos e sessões para identificar tentativas de exploração de vulnerabilidades ou acessos indevidos ao sistema.
+
+6. **Proteção de Banco de Dados**:
+   - **Proteção do Banco de Dados**: O banco de dados **grafana.db** deve ser protegido com permissões rigorosas de leitura e escrita, permitindo acesso apenas aos processos necessários. Considere utilizar **criptografia** no banco de dados para dificultar o acesso não autorizado a credenciais e outras informações sensíveis.
+   
+7. **Rotação e Hashing de Senhas**:
+   - **Senhas**: Realize a **rotação periódica de senhas** de serviços e usuários do sistema, especialmente após qualquer suspeita de comprometimento. Garanta também que as senhas estejam armazenadas utilizando **hashing seguro** (como **bcrypt** ou **argon2**) para minimizar o impacto caso credenciais sejam expostas.
+
+Ao aplicar essas medidas de mitigação, a superfície de ataque é significativamente reduzida, protegendo o sistema contra vulnerabilidades exploradas no contexto descrito.
+
+## Ref
+
+1. **HackTricks - Grafana Pentesting**  
+   [https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/grafana](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/grafana)  
+   Esta referência detalha as técnicas de pentest em ambientes que utilizam Grafana, abordando vulnerabilidades e métodos de exploração comuns.
+
+2. **Exploit Notes - Grafana Pentesting**  
+   [https://exploit-notes.hdks.org/exploit/web/grafana-pentesting/](https://exploit-notes.hdks.org/exploit/web/grafana-pentesting/)  
+   Um guia prático para identificar e explorar vulnerabilidades em instalações de Grafana, oferecendo insights valiosos para testadores de penetração.
