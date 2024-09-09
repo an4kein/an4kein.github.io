@@ -4,6 +4,8 @@ tags: [linux,easy,Grafana 8.3.0]
 categories: OffSecProvingGrounds
 ---
 
+![image](https://github.com/user-attachments/assets/ab4a5cca-1e27-4311-912d-0814056a47c9)
+
 ## Enumeration
 
 ### Varredura Inicial com Nmap
