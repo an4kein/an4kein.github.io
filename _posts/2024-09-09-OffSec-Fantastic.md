@@ -72,7 +72,18 @@ Depois de baixar o banco de dados, você pode utilizar uma ferramenta específic
 
 ![image](https://github.com/user-attachments/assets/f9ee9bf4-03ac-4930-8887-7dff92a475b6)
 
+Agora, usando o usuário que descobrimos após a leitura do arquivo **/etc/passwd**, realizamos o login via **SSH** utilizando a senha que acabamos de encontrar. 
 
+Esse acesso nos permite explorar a máquina com permissões do usuário e potencialmente escalar privilégios ou realizar outras ações dentro do sistema.
 
+```
+ssh sysadmin@192.168.225.181
+
+SuperSecureP@ssw0rd
+```
+
+![image](https://github.com/user-attachments/assets/a0a9d41f-c21f-4687-884c-509fdba2908b)
+
+## Privilege Escalation
 
 
