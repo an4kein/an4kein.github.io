@@ -4,6 +4,7 @@ tags: [linux,easy,CVE-2021-43857]
 categories: OffSecProvingGrounds
 ---
 
+![image](https://github.com/user-attachments/assets/a023b003-2a57-442c-86f0-f1705c9ee6ed)
 
 ## Enumeration
 
