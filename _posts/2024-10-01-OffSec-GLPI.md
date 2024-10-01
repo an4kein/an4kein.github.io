@@ -303,3 +303,36 @@ chmod +x revshell.sh: Torna o script revshell.sh executável.
 ```
 
 ![image](https://github.com/user-attachments/assets/37d7451e-5040-49cc-bcd5-3e57b72e2894)
+
+
+## Mitigation
+
+Para mitigar as vulnerabilidades e ataques explorados durante este write-up, é fundamental adotar medidas de segurança adequadas que abranjam diferentes aspectos da infraestrutura. Abaixo estão as principais ações recomendadas:
+
+### 1. **Manter o Software Atualizado**
+   - **Atualização do GLPI**: A vulnerabilidade **CVE-2022-35914** explorada foi possível devido à versão desatualizada do GLPI. Mantenha sempre o software atualizado com os patches de segurança mais recentes.
+   - **Atualização do Jetty**: Se Jetty estiver presente na infraestrutura, garanta que ele esteja na versão mais recente, corrigindo possíveis falhas de segurança conhecidas.
+
+### 2. **Restringir Acesso a Serviços Críticos**
+   - **SSH**: Utilize **autenticação baseada em chaves** para o acesso SSH, desabilitando a autenticação por senha. Também restrinja o acesso SSH somente a endereços IP confiáveis.
+   - **Acesso Local**: Bloqueie portas internas, como a **porta 8080** usada pelo Jetty, de modo que elas só possam ser acessadas de endereços IP autorizados. Use firewalls e políticas de controle de acesso adequadas.
+
+### 3. **Proteção Contra Execução Remota de Código (RCE)**
+   - **Validação de Entradas**: Implemente uma validação rigorosa nas entradas de dados das aplicações web para evitar injeção de comandos e execução remota de código.
+   - **Desabilitar Funções Não Necessárias**: Funções de execução de código como **exec** ou **system** no PHP devem ser desabilitadas, a menos que absolutamente necessárias.
+
+### 4. **Gerenciamento de Senhas e Configurações Seguras**
+   - **Segurança no Banco de Dados**: Evite armazenar senhas em arquivos de configuração sem criptografia. Utilize um sistema de gerenciamento de segredos seguro.
+   - **Rotina de Troca de Senhas**: Implemente uma política de troca periódica de senhas e use senhas fortes para todos os usuários, especialmente contas com privilégios elevados.
+
+### 5. **Monitoramento e Detecção de Ameaças**
+   - **Ferramentas de Monitoramento**: Use soluções como **Wazuh** ou **OSSEC** para monitorar atividades suspeitas no sistema e detectar tentativas de escalonamento de privilégios.
+   - **Logging e Auditoria**: Ative logs detalhados para monitorar acessos e atividades de todos os serviços críticos, como SSH, banco de dados e servidor web. Audite regularmente esses logs para detectar padrões incomuns.
+
+### 6. **Reduzir a Superfície de Ataque**
+   - **Desinstalação de Serviços Inúteis**: Se o **Jetty** não for um serviço essencial, considere removê-lo. Limite a quantidade de serviços expostos em sua infraestrutura.
+   - **Hardening do Sistema**: Siga boas práticas de **hardening** (fortalecimento) para todos os sistemas, limitando permissões de usuários, configurando adequadamente as permissões de arquivos e diretórios, e removendo serviços desnecessários.
+
+### 7. **Treinamento e Conscientização**
+   - **Educação dos Usuários**: Treine usuários e administradores sobre práticas seguras, como o gerenciamento de senhas, o uso seguro do SSH, e o reconhecimento de atividades suspeitas.
+   - **Segurança Ofensiva e Defensiva**: A equipe de TI deve estar bem treinada tanto em aspectos ofensivos quanto defensivos de segurança cibernética para responder rapidamente a vulnerabilidades.
