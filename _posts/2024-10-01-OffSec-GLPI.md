@@ -103,4 +103,9 @@ https://github.com/senderend/CVE-2022-35914
 https://github.com/noxlumens/CVE-2022-35914_poc
 ![image](https://github.com/user-attachments/assets/c8a75793-0bea-4312-8b8d-db807919ad6e)
 
+## Exploitation
+
+Após a fase de enumeração e análise das vulnerabilidades encontradas, passei para a exploração do CVE-2022-35914. Utilizando o primeiro exploit encontrado no GitHub, que fazia uso da função array_map, rapidamente consegui obter um RCE (Remote Code Execution). Isso permitiu controle remoto sobre o sistema vulnerável, abrindo caminho para manipulações adicionais e coleta de informações sensíveis.
+
+![image](https://github.com/user-attachments/assets/a48e6447-4e50-4c39-a8fc-1b706a580e2a)
 
