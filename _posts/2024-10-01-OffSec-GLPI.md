@@ -109,3 +109,6 @@ Após a fase de enumeração e análise das vulnerabilidades encontradas, passei
 
 ![image](https://github.com/user-attachments/assets/a48e6447-4e50-4c39-a8fc-1b706a580e2a)
 
+Tentei várias formas de obter uma reverse shell utilizando o próprio exploit, mas não obtive sucesso imediato. Diante disso, precisei usar o Burp Suite para interceptar o payload do exploit e entender melhor o que estava acontecendo.
+
+![image](https://github.com/user-attachments/assets/008f68a1-28cb-4513-b637-f20b0a5cb034)
