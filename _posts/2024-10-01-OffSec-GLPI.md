@@ -156,3 +156,13 @@ grep -i 'password' glpi_dump.sql
 
 Após isso, encontrei a senha SnowboardSkateboardRoller234. Tentei novamente fazer login com o usuário Betty e, desta vez, tive sucesso.
 
+Desta vez, utilizei o LinPEAS para me ajudar na escalada de privilégios. Ele trouxe informações valiosas, como a presença de uma aplicação chamada Jetty, localizada em /opt, e uma porta local 8080 em execução.
+
+Então, criei um túnel SSH para acessar essa porta local 8080 no meu localhost (Kali) utilizando o seguinte comando:
+
+```
+ssh -L 3000:localhost:8080 betty@192.168.232.242
+```
+
+Agora, basta acessar a porta 3000 no Kali, e você verá a aplicação Jetty.
+![image](https://github.com/user-attachments/assets/02f91bf7-df28-4dc8-a21f-f03a537f5841)
