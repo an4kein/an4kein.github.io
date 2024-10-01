@@ -79,3 +79,28 @@ Novamente, realizando uma pesquisa no Google por exploits disponíveis para o CV
 
 ![image](https://github.com/user-attachments/assets/f3434d49-ff3b-44e9-baf4-def899004ccf)
 
+Após ler o artigo, tentei obter RCE (Remote Code Execution), mas sem sucesso. Também tentei utilizar o exploit que encontrei no GitHub, que não gerou resultados significativos, mas me deu uma pista de como prosseguir. Além disso, havia uma observação interessante no artigo que mencionei:
+
+"Please note that there are other ways to exploit the vulnerability without exec, by using callback functions like array_map, call_user_func,… do not rely on disable_function on exec to patch the vulnerability."
+
+Ou seja, se a função exec estiver desabilitada, você pode tentar outras alternativas. Comprovei isso ao executar o exploit mencionado, que simplesmente retornou (array).
+
+![image](https://github.com/user-attachments/assets/9ae1f2d9-eb44-42e1-9861-1f9613bf5113)
+
+![image](https://github.com/user-attachments/assets/05cecf4c-6507-4cf3-8ed2-c2e0babd827b)
+
+Fui ao Google novamente, desta vez pesquisando da seguinte forma:
+
+glpi CVE-2022-35914 array_map github.
+
+Com isso, encontrei novos exploits que utilizavam a função array_map.
+
+![image](https://github.com/user-attachments/assets/0aefc2db-9500-4b36-9881-04d4f90c4a64)
+
+https://github.com/senderend/CVE-2022-35914
+![image](https://github.com/user-attachments/assets/f15e0d80-2218-4ed2-b3da-efe6b9f2c63f)
+
+https://github.com/noxlumens/CVE-2022-35914_poc
+![image](https://github.com/user-attachments/assets/c8a75793-0bea-4312-8b8d-db807919ad6e)
+
+
