@@ -49,3 +49,22 @@ As seguintes combinações de usuários e senhas foram testadas:
 
 No entanto, não obtive sucesso com nenhuma dessas credenciais.
 
+Em seguida, voltei ao Google e pesquisei por possíveis ferramentas de scan de vulnerabilidades específicas para o GLPI. Encontrei uma ferramenta interessante, com a qual consegui obter informações valiosas, como a versão do GLPI, arquivos acessíveis, e identificar uma vulnerabilidade que poderia ser explorada.
+
+![image](https://github.com/user-attachments/assets/fa7a12b0-9234-4399-bb27-39cc9e4d3c1c)
+
+https://github.com/Digitemis/GLPIScan
+![image](https://github.com/user-attachments/assets/697a266d-7ddf-44be-876b-38589d3e1e05)
+
+É uma ferramenta simples de usar. Você pode executá-la com o seguinte comando:
+
+```
+python3 GLPIScan.py -u http://192.168.232.242/ -a
+```
+
+- **-u**: especifica a URL alvo.
+- **-a**: executa todas as checagens disponíveis.
+
+Para mais informações sobre o uso da ferramenta, consulte a opção de ajuda utilizando o parâmetro **--help**.
+
+![image](https://github.com/user-attachments/assets/ea5e6be4-94d3-469f-a529-b27a3dfc55ae)
