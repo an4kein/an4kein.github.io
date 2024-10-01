@@ -32,3 +32,20 @@ O **NmapAutomator** é uma ferramenta que automatiza diferentes varreduras do **
 
 Essa varredura manual com o **Nmap** utiliza o parâmetro **-p-** para escanear todas as 65.535 portas, garantindo a cobertura total. A opção **-T4** ajusta o tempo para uma varredura mais rápida, e **-v** ativa o modo verbose, fornecendo feedback detalhado durante o processo. Os resultados são salvos no arquivo **nmap-all-ports** para consulta posterior.
 
+Como vimos anteriormente, foram encontradas duas portas abertas: 80 e 22. A porta 80 está associada a uma aplicação web chamada GLPI, enquanto a porta 22 é utilizada pelo serviço SSH, como já é de conhecimento.
+
+![image](https://github.com/user-attachments/assets/a1236c03-51bc-4c18-8838-e2350a9f0e0f)
+
+Inicialmente, tentei acessar a aplicação utilizando senhas padrão, que podem ser facilmente encontradas com uma rápida pesquisa no Google ou até mesmo com o auxílio de ferramentas como o ChatGPT.
+
+![image](https://github.com/user-attachments/assets/3d5b4c9a-5d11-4035-a553-1fdd777591cc)
+
+As seguintes combinações de usuários e senhas foram testadas:
+
+    glpi/glpi (super-admin)
+    tech/tech
+    postonly/postonly (apenas para helpdesk)
+    normal/normal
+
+No entanto, não obtive sucesso com nenhuma dessas credenciais.
+
