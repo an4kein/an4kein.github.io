@@ -68,3 +68,14 @@ python3 GLPIScan.py -u http://192.168.232.242/ -a
 Para mais informações sobre o uso da ferramenta, consulte a opção de ajuda utilizando o parâmetro **--help**.
 
 ![image](https://github.com/user-attachments/assets/ea5e6be4-94d3-469f-a529-b27a3dfc55ae)
+
+![image](https://github.com/user-attachments/assets/8c2b23d6-29b3-42d0-a952-3a3a2c9d6bf1)
+
+Como podemos observar, encontramos a versão do GLPI, que é 10.0.2, e identificamos uma vulnerabilidade associada, o CVE-2022-35914, à qual a aplicação está vulnerável.
+
+Novamente, realizando uma pesquisa no Google por exploits disponíveis para o CVE-2022-35914, encontrei alguns recursos que podem nos ajudar. Como podemos ver nas imagens abaixo:
+
+![image](https://github.com/user-attachments/assets/6f57f440-7a9d-4601-864f-024fa8686af7)
+
+![image](https://github.com/user-attachments/assets/f3434d49-ff3b-44e9-baf4-def899004ccf)
+
